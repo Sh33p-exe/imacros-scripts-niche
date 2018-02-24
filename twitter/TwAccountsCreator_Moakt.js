@@ -1,10 +1,5 @@
 var jsLF = "\n";
-var i, retcode, errtext;
-var addimg, addbio, addco, min, max;
-var count = 0;
-var good = 0;
-var bad = 0;
-var unconf = 0;
+var i, retcode, errtext, addimg, addbio, addco, min, max,count = 0,good = 0,bad = 0,unconf = 0;
 var iMacros = window.QueryInterface(imns.Ci.nsIInterfaceRequestor)
     .getInterface(imns.Ci.nsIWebNavigation)
     .QueryInterface(imns.Ci.nsIDocShellTreeItem).rootTreeItem
@@ -15,9 +10,9 @@ var imfolder = (iMacros._currentMacro.path).match(/.(.*?).Macros./g);
 var myimg = imfolder + "Downloads\\";
 // var myproxy = imfolder + "Datasources" + "\\proxylist.txt";
 
-var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+const windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
     .getService(Components.interfaces.nsIWindowMediator);
-var window = windowMediator.getMostRecentWindow("navigator:browser");
+const window = windowMediator.getMostRecentWindow("navigator:browser");
 
 function count_rows(file_path) {
     const CRLF = "\r\n";
