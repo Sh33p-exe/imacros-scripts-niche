@@ -27,4 +27,9 @@ git clone https://github.com/jinzocode/imacros-scripts.git
 
 3. Refresh the sidepanel of iMacros
 
-4. Select the script you want then press **Play**
+4. Select the script you want then press **play**
+
+### Note
+
+- Don't use play loop as javascript itself has loops.
+- Don't **spam** use the scripts libray for spam or violation of the terms of usage for any website.
