@@ -1,5 +1,5 @@
 var jsLF = "\n";
-var i, retcode, errtext, addimg, addbio, addco, min, max,count = 0,good = 0,bad = 0,unconf = 0;
+var i, retcode, errtext, addimg, addbio, addco, min, max, count = 0, good = 0,bad = 0,unconf = 0;
 var iMacros = window.QueryInterface(imns.Ci.nsIInterfaceRequestor)
     .getInterface(imns.Ci.nsIWebNavigation)
     .QueryInterface(imns.Ci.nsIDocShellTreeItem).rootTreeItem
