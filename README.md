@@ -35,3 +35,7 @@ git clone https://github.com/jinzocode/imacros-scripts.git
 
 - Don't use play loop as JavaScript itself has loops.
 - Don't use the libray for **spam** or **violation** the terms of usage for any website. I'm not responsible for any violations.
+## Bugs
+Please open a new [issue](https://github.com/jinzocode/imacros-scripts/issues/new)
+## License
+MIT: http://rem.mit-license.org
