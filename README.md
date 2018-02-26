@@ -9,7 +9,7 @@ An open source library for imacros scripts to scribble the web :)
 - iMacros 8.9.7 (Add-on)
 
 
-## Installation
+## Dependencies
 Firefox ESR| iMacros 8.9.7
 ------|------
 [All Versions](https://www.mozilla.org/en-US/firefox/organizations/) | [Download](https://addons.mozilla.org/firefox/downloads/file/428670/type:attachment/imacros_for_firefox-8.9.7-fx.xpi?src=version-history)
