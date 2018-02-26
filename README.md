@@ -37,7 +37,7 @@ git clone https://github.com/jinzocode/imacros-scripts.git
 ## Bugs
 Please open a new [issue](https://github.com/jinzocode/imacros-scripts/issues/new)
 ## License
-MIT: http://rem.mit-license.orgEnd
+MIT: http://rem.mit-license.org
 
 #### End User License Agreement (EULA)
 1. You will not use the libray for **spam** or **violation** the terms of usage for any website or any other malicious activity.
