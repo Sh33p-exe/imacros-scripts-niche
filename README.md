@@ -3,21 +3,19 @@
 
 An open source library for imacros scripts to scribble the web :)
 
---
-### Requirements
+## Requirements
 - Mac OS or Linux or Windows
 - Firefox ESR or WaterFox v55
 - iMacros 8.9.7 (Add-on)
 
---
-### Installation
+
+## Installation
 Firefox ESR| iMacros 8.9.7
 ------|------
 [All Versions](https://www.mozilla.org/en-US/firefox/organizations/) | [Download](https://addons.mozilla.org/firefox/downloads/file/428670/type:attachment/imacros_for_firefox-8.9.7-fx.xpi?src=version-history)
 
 *** Stop Auto Update for iMacros 8.9.7 because the newer version no longer supports some features.
 
---
 ### How to use?
 
 1. Get the source
