@@ -19,7 +19,9 @@ Firefox | iMacros 8.9.7
 1. Get the source
 
 Clone the git repository with
-```git clone https://github.com/jinzocode/imacros-scripts.git```
+```
+git clone https://github.com/jinzocode/imacros-scripts.git
+```
 
 2. Copy&Paste the script you want inside ``iMacros/Macros`` folder
 
