@@ -29,7 +29,7 @@ git clone https://github.com/jinzocode/imacros-scripts.git
 
 4. Select the script you want then press **play**
 
-### Note
+### *** Notes
 
 - Don't use play loop as javascript itself has loops.
-- Don't **spam** use the scripts libray for spam or violation of the terms of usage for any website.
+- Don't use the libray for **spam** or **violation** of the terms of usage for any website. I'm not responsible for any violations.
