@@ -16,7 +16,7 @@ Firefox ESR| iMacros 8.9.7
 
 *** Stop Auto Update for iMacros 8.9.7 because the newer version no longer supports some features.
 
-### How to use?
+## How to use?
 
 1. Get the source
 
