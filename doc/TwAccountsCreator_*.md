@@ -39,4 +39,4 @@ That's it
 - Any Improvements needed
 
 ### How to contribute?
-Open a new pull request or just leave your feedback or a comment below.
+Open a new pull request or a new issue
