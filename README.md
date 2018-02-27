@@ -27,9 +27,11 @@ git clone https://github.com/jinzocode/imacros-scripts.git
 
 2. Copy & Paste the script you want inside ``iMacros/Macros`` folder
 
-3. Refresh the sidepanel of iMacros
+3. Create your own config you will find examples inside datasources folder. (Each script has custom datasource file or more)
 
-4. Select the script you want then press **play**
+4. Refresh the sidepanel of iMacros
+
+5. Select the script you want then press **play**
 
 ### *** Notes
 
