@@ -1,6 +1,6 @@
 ![TWITTER-1.jpg](https://res.cloudinary.com/hpiynhbhq/image/upload/v1519434336/cfk3nmv42yfrf8n6qo0v.jpg)
 
-# Twitter Account Creator - Moakt
+# Twitter Account Creator (Moakt - Mohmal)
 
 ### What is the project about?
 This is a new project for a macro that is creating twitter accounts by using temp email service which is moakt.com. The script contains many interactive functions that keep pace with most site changes.
