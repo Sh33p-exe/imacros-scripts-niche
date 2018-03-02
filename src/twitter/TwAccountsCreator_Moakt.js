@@ -35,14 +35,6 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function makeid(num) {
-    var text = "";
-    var possible = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz0123456789";
-    for (var i = 0; i < num; i++)
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-    return text;
-}
-
 function password(num) {
     return Math.random().toString().slice(2, num);
 }
