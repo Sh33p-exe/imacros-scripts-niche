@@ -1,5 +1,5 @@
 /////////////////////////////////////////////////////////
-//@github https://github.com/jinzocode/imacros-scripts//
+//@github https://github.com/jinzocode/imacros-scripts
 ///////////////////////////////////////////////////////
 var jsLF = "\n";
 var i, retcode, errtext, addimg, addbio, addco, min, max, count = 0, good = 0,bad = 0,unconf = 0;
