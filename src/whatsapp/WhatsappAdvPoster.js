@@ -131,9 +131,9 @@ if (window.document.body.innerText.indexOf('To use WhatsApp on your computer') =
 
         //remove error message if number not found
         window.setInterval(function () {
-            var xerr = window.document.querySelectorAll('.app-wrapper > span:nth-child(3) > div:nth-child(1)');
+            var xerr = window.document.querySelectorAll('._3gUiM');
             if (xerr.length)
-                xerr[0].innerHTML = null;
+                xerr.forEach(e => e.parentNode.removeChild(e));
         }, 300);
         //////////////////////////////////////////
         for (var index = 0; index < list.length; index++) {
@@ -141,8 +141,10 @@ if (window.document.body.innerText.indexOf('To use WhatsApp on your computer') =
                 interval = Number(getRandomInt(mmin, mmax));
                 window.console.log("***Account: " + index);
                 //Send to number Section
-                if (index === 0)
-                    window.document.querySelector("#input-chatlist-search").innerHTML += '<div id="numplace"></div>';
+                if (index === 0) {
+                    iimPlayCode("WAIT SECONDS=5");
+                    window.document.querySelector("._2cLHw").innerHTML += '<div id="numplace"></div>';
+                }
                 //Go to number
                 window.document.querySelector("#numplace").innerHTML = '<a id="xclick" href="https://api.whatsapp.com/send?phone=' + list[index] + '" title="https://api.whatsapp.com/send?phone=' + list[index] + '" target="_blank" rel="noopener noreferrer" class="selectable-text invisible-space copyable-text">';
                 window.document.querySelector('#xclick').click();
@@ -150,7 +152,7 @@ if (window.document.body.innerText.indexOf('To use WhatsApp on your computer') =
                     iimPlayCode("WAIT SECONDS=5");
                 else
                     iimPlayCode("WAIT SECONDS=1");
-                var current_number = window.document.querySelector('header.pane-header:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > span:nth-child(1)').title.replace(/\D/g, '');
+                var current_number = window.document.querySelector('._2zCDG > span:nth-child(1)').title.replace(/\D/g, '');
                 iimPlayCode("WAIT SECONDS=3");
 
                 if (index > 0) {
@@ -163,16 +165,14 @@ if (window.document.body.innerText.indexOf('To use WhatsApp on your computer') =
                 if (Number(list[index]) === Number(current_number)) {
                     var macro = "CODE:";
                     macro += "SET !TIMEOUT_STEP 1" + jsLF;
-                    macro += "TAG POS=1 TYPE=DIV ATTR=CLASS:pluggable-input-body<SP>copyable-text<SP>selectable-text&&DATA-TAB:1&&DIR:auto&&SPELLCHECK:true&&CONTENTEDITABLE:true&&TXT:" + jsLF;
                     macro += "SET !CLIPBOARD {{msg}}<br>{{!NOW:mm/dd<SP>hh:nn:ss}}" + "<br>" + Math.random().toString(36).substring(7) + jsLF;
                     macro += "EVENT TYPE=KEYPRESS SELECTOR=\"#main>FOOTER>DIV>DIV>DIV>DIV:nth-of-type(2)\" CHAR=V MODIFIERS=CTRL" + jsLF;
-                    macro += "TAG POS=1 TYPE=BUTTON ATTR=CLASS:compose-btn-send&&TXT:" + jsLF;
+                    macro += "EVENT TYPE=CLICK SELECTOR=\"#main>FOOTER>DIV>BUTTON\" BUTTON=0" + jsLF;
                     macro += "SET !ERRORIGNORE YES" + jsLF;
                     macro += "SET !REPLAYSPEED SLOW" + jsLF;
                     for (i = 0; i < links.length; i++) {
                         macro += "EVENTS TYPE=KEYPRESS SELECTOR=\"#main>FOOTER>DIV>DIV>DIV>DIV:nth-of-type(2)\" CHARS=" + links[i] + jsLF;
                         macro += "EVENT TYPE=CLICK SELECTOR=\"#main>FOOTER>DIV>BUTTON\" BUTTON=0" + jsLF;
-                        macro += "TAG POS=1 TYPE=BUTTON ATTR=CLASS:compose-btn-send&&TXT:" + jsLF;
                     }
                     if (count_rows(imdata + "Whatsappimg.txt") !== 0) {
                         for (i = 1; i <= count_rows(imdata + "Whatsappimg.txt"); i++) {
