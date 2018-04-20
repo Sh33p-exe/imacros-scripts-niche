@@ -156,7 +156,7 @@ if (window.document.body.innerText.indexOf('To use WhatsApp on your computer') =
                     window.document.querySelector("header").innerHTML += '<div id="numplace"></div>';
                 }
                 //Go to number
-                window.document.querySelector("#numplace").innerHTML = '<a id="xclick" href="https://api.whatsapp.com/send?phone=' + list[index] + '" title="https://api.whatsapp.com/send?phone=' + list[index] + '" target="_blank" rel="noopener noreferrer" class="selectable-text invisible-space copyable-text">';
+                window.document.querySelector("#numplace").innerHTML = '<a id="xclick" href="https://web.whatsapp.com/send?phone=' + list[index] + '" title="https://web.whatsapp.com/send?phone=' + list[index] + '" target="_blank" rel="noopener noreferrer" class="selectable-text invisible-space copyable-text">';
                 window.document.querySelector('#xclick').click();
                 if (index === 0)
                     iimPlayCode("WAIT SECONDS=5");
