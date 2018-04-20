@@ -28,29 +28,29 @@ var imdata = imfolder + 'Datasources\\';
 function count_rows(file_path) {
     const CRLF = "\r\n";
     const LF = "\n";
-    var lines = [];
-    var file_i = imns.FIO.openNode(file_path);
-    var text = imns.FIO.readTextFile(file_i);
-    var eol = (text.indexOf(CRLF) == -1) ? LF : CRLF;
+    let lines = [];
+    let file_i = imns.FIO.openNode(file_path);
+    let text = imns.FIO.readTextFile(file_i);
+    let eol = (text.indexOf(CRLF) == -1) ? LF : CRLF;
     lines = text.split(eol);
     eol = lines.length;
     return eol;
 }
 
 function getCurrentDate() {
-    var date = new Date();
-    var month = date.getUTCMonth() + 1; //months from 1-12
-    var day = date.getUTCDate();
-    var year = date.getUTCFullYear();
+    let date = new Date();
+    let month = date.getUTCMonth() + 1; //months from 1-12
+    let day = date.getUTCDate();
+    let year = date.getUTCFullYear();
     newdate = year + "/" + month + "/" + day;
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
-    var seconds = date.getSeconds();
-    var ampm = hours >= 12 ? 'PM' : 'AM';
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+    let ampm = hours >= 12 ? 'PM' : 'AM';
     hours = hours % 12;
     hours = hours ? hours : 12; // the hour '0' should be '12'
     minutes = minutes < 10 ? '0' + minutes : minutes;
-    var strTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm + ' ' + year + '/' + '/' + month + '/' + day;
+    let strTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm + ' ' + year + '/' + '/' + month + '/' + day;
     return strTime;
 }
 
@@ -77,7 +77,9 @@ function dashboard() {
         '<span>Links (Support preview): </span><br><textarea id="num" style="height: 80px;width: 450px;' + _cssinput + '" type="text"></textarea><br>' +
         '<input class="filein" type="file" data="" accept="file_extension">' +
         '<p>Image Text File: "Whatsappimg.txt"</p><br>' +
-        '<p>You have : ' + count_rows(imdata + "Whatsappimg.txt") + ' images</p><br>' +
+        '<p>You have : ' +
+        count_rows(imdata + "Whatsappimg.txt") +
+        ' images</p><br>' +
         '<br><span>Enter your Numbers:</span><br><textarea id="showlist" dir=auto style="height: 150px;width: 150px;' + _cssinput + '" type="text"></textarea>' +
         '<br><br><span>Interval Between every message: </span><br><input class="mmin" value="5" type="text" style="width:50px;' + _cssinput + '"> - <input class="mmax" value="10" type="text" style="width:50px;' + _cssinput + '"> sec<br>' +
         '<br><span>Between every messages group from </span><input class="mgmin" value="5" type="text" style="width:50px;' + _cssinput + '"> to <input class="mgmax" value="10" type="text" style="width:50px;' + _cssinput + '"> interval between' +
@@ -97,24 +99,30 @@ iimPlayCode("SET !TIMEOUT_STEP 300\nTAG POS=1 TYPE=DIV ATTR=CLASS:_*");
 
 //check if log in
 if (window.document.body.innerText.indexOf('To use WhatsApp on your computer') === -1) {
-    dashboard();
+    try {
+        count_rows(imdata + "Whatsappimg.txt")
+        dashboard();
+    } catch (error) {
+        alert('Whatsappimg.txt is not exist in datasources, please create it first.');
+    }
+
     window.document.querySelectorAll('input[type="file"]')[0].addEventListener("change", function () {
         this.setAttribute('data', this.value);
     });
     window.document.querySelectorAll('.run')[0].addEventListener("click", function () {
-        var msg = window.document.querySelector('textarea[id="msg"]').value;
-        var links = window.document.querySelector('textarea[id="num"]').value.split('\n');
-        var upfile = window.document.querySelectorAll(".filein:not([data=\"\"])");
-        var mgmax = window.document.querySelector(".mgmax").value;
-        var mgmin = window.document.querySelector(".mgmin").value;
-        var wmin = window.document.querySelector(".wmin").value;
-        var wmax = window.document.querySelector(".wmax").value;
-        var mmin = window.document.querySelector(".mmin").value;
-        var mmax = window.document.querySelector(".mmax").value;
-        var list = window.document.getElementById('showlist').value.split('\n');
+        let msg = window.document.querySelector('textarea[id="msg"]').value;
+        let links = window.document.querySelector('textarea[id="num"]').value.split('\n');
+        let upfile = window.document.querySelectorAll(".filein:not([data=\"\"])");
+        let mgmax = window.document.querySelector(".mgmax").value;
+        let mgmin = window.document.querySelector(".mgmin").value;
+        let wmin = window.document.querySelector(".wmin").value;
+        let wmax = window.document.querySelector(".wmax").value;
+        let mmin = window.document.querySelector(".mmin").value;
+        let mmax = window.document.querySelector(".mmax").value;
+        let list = window.document.getElementById('showlist').value.split('\n');
         ///////////////////////////////////////////////////////////////////////////////////
         iimPlayCode("SET !EXTRACT {{!NOW:yymmddhhnnss}}");
-        var session = iimGetLastExtract();
+        let session = iimGetLastExtract();
         try {
             upfile = upfile[0].getAttribute('data');
         } catch (error) {
@@ -127,23 +135,25 @@ if (window.document.body.innerText.indexOf('To use WhatsApp on your computer') =
 
         //wait for page to loading
         iimPlayCode("SET !TIMEOUT_STEP 300\nTAG POS=1 TYPE=DIV ATTR=CLASS:_*");
-        var gmessages = getRandomInt(mgmin, mgmax);
+        let gmessages = getRandomInt(mgmin, mgmax);
 
         //remove error message if number not found
         window.setInterval(function () {
-            var xerr = window.document.querySelectorAll('._3gUiM');
+            let xerr = window.document.querySelectorAll('._3gUiM');
             if (xerr.length)
                 xerr.forEach(e => e.parentNode.removeChild(e));
         }, 300);
         //////////////////////////////////////////
-        for (var index = 0; index < list.length; index++) {
+        for (let index = 0; index < list.length; index++) {
+
+
             try {
                 interval = Number(getRandomInt(mmin, mmax));
                 window.console.log("***Account: " + index);
                 //Send to number Section
                 if (index === 0) {
                     iimPlayCode("WAIT SECONDS=5");
-                    window.document.querySelector("._2cLHw").innerHTML += '<div id="numplace"></div>';
+                    window.document.querySelector("header").innerHTML += '<div id="numplace"></div>';
                 }
                 //Go to number
                 window.document.querySelector("#numplace").innerHTML = '<a id="xclick" href="https://api.whatsapp.com/send?phone=' + list[index] + '" title="https://api.whatsapp.com/send?phone=' + list[index] + '" target="_blank" rel="noopener noreferrer" class="selectable-text invisible-space copyable-text">';
@@ -152,8 +162,12 @@ if (window.document.body.innerText.indexOf('To use WhatsApp on your computer') =
                     iimPlayCode("WAIT SECONDS=5");
                 else
                     iimPlayCode("WAIT SECONDS=1");
-                var current_number = window.document.querySelector('._2zCDG > span:nth-child(1)').title.replace(/\D/g, '');
-                iimPlayCode("WAIT SECONDS=3");
+                try {
+                    let current_number = parseInt(window.document.querySelector('._2zCDG > span:nth-child(1)').title.replace(/\s/g, ''));
+                } catch (error) {
+                    iimDisplay(current_number + ' not found.');
+                }
+                iimPlayCode("WAIT SECONDS=5");
 
                 if (index > 0) {
                     retcode = iimPlayCode("WAIT SECONDS=" + interval);
@@ -163,7 +177,7 @@ if (window.document.body.innerText.indexOf('To use WhatsApp on your computer') =
                 ////////////////////////////////////////
                 //Send Message
                 if (Number(list[index]) === Number(current_number)) {
-                    var macro = "CODE:";
+                    let macro = "CODE:";
                     macro += "SET !TIMEOUT_STEP 1" + jsLF;
                     macro += "SET !CLIPBOARD {{msg}}<br>{{!NOW:mm/dd<SP>hh:nn:ss}}" + "<br>" + Math.random().toString(36).substring(7) + jsLF;
                     macro += "EVENT TYPE=KEYPRESS SELECTOR=\"#main>FOOTER>DIV>DIV>DIV>DIV:nth-of-type(2)\" CHAR=V MODIFIERS=CTRL" + jsLF;
@@ -221,7 +235,7 @@ if (window.document.body.innerText.indexOf('To use WhatsApp on your computer') =
                 if (counter >= gmessages) {
                     counter = 0;
                     gmessages = getRandomInt(mgmin, mgmax);
-                    var timer = getRandomInt(wmin, wmax);
+                    let timer = getRandomInt(wmin, wmax);
                     retcode = iimPlayCode("WAIT SECONDS=" + Number(timer));
                     if (retcode < 0)
                         break;
@@ -249,16 +263,3 @@ if (window.document.body.innerText.indexOf('To use WhatsApp on your computer') =
     }, false);
 } else
     alert("Please SCAN QR CODE!");
-////////////////////////////////////////////////////////////////////////////////
-// function isEven(n) {
-//     return n % 2 === 0;
-// }
-
-// function isOdd(n) {
-//     return Math.abs(n % 2) === 1;
-// }
-
-// function getRandomNum(len) {
-//     len += 2;
-//     return Math.random().toString().slice(2, len);
-// }
