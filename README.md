@@ -14,7 +14,16 @@ Firefox ESR| iMacros 8.9.7
 ------|------
 [All Versions](https://www.mozilla.org/en-US/firefox/organizations/) | [Download](https://addons.mozilla.org/firefox/downloads/file/428670/type:attachment/imacros_for_firefox-8.9.7-fx.xpi?src=version-history)
 
+![download_imacros](download.png)
+
 *** Stop Auto Update for iMacros 8.9.7 because the newer version no longer supports some features.
+
+## Why iMacros iMacros 8.9.7 not latest 9.0.3?
+- Full support for window interface
+- Full support for must javascript language
+- Stable & Secure with good feedbacks according to imacros.net
+- Latest version isn't secure and has bad feedbacks and has many bugs and not stable to work on.
+
 
 ## How to use?
 
