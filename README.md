@@ -18,7 +18,7 @@ Firefox ESR| iMacros 8.9.7
 
 *** Stop Auto Update for iMacros 8.9.7 because the newer version no longer supports some features.
 
-## Why iMacros iMacros 8.9.7 not latest 9.0.3?
+## Why iMacros 8.9.7 not latest 9.0.3?
 - Full support for window interface
 - Full support for must javascript language
 - Stable & Secure with good feedbacks according to imacros.net
