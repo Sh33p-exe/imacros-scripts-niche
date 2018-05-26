@@ -60,27 +60,28 @@ git clone https://github.com/jinzocode/imacros-scripts.git
 
 ##### Start strip down iMacros 8.7.9 to 9.0.3
 ``nsIWindowMediator`` is a method being  used to access some Features on Firefox Browser
-```
-var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+
+```javascript
+const windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
     .getService(Components.interfaces.nsIWindowMediator);
-var window = windowMediator.getMostRecentWindow("navigator:browser");
+const window = windowMediator.getMostRecentWindow("navigator:browser");
 ```
 We use that method to access Firefox UI or even control iMacros it self like stop or control the windows UP/DOWN/Bottom with some DOM methods to ensure the access to window content.
 
 Example for usage 
-```
+```javascript
 window.iMacros.jsplayer2.stop();//iMacros stop button
 ```
 
 Usage with DOM
 
-```
+```javascript
 window.document.querySelector('body').click();
 ```
 
 Another Example with DOM to get element ``textContent``
 
-```
+```javascript
 window.document.querySelector('body').textContent;
 ```
 
@@ -89,19 +90,19 @@ these messages means you need to completely forgot ``window content`` methods.
 
 Alternative using to click or fill forms using iMacros Basic Language
 
-```
+```javascript
 TAG POS=1 TYPE=A ATTR=TXT:Your<SP>Text<SP>*
 ```
 
 or using ``Experimental`` Event method
 
-```
+```javascript
 EVENT TYPE=CLICK SELECTOR="YOUR_CSS_ELECTOR" BUTTON=0
 ```
 
 In case of filling some forms
 
-```
+```javascript
 EVENTS TYPE=KEYPRESS SELECTOR="YOUR_CSS_ELECTOR" CHARS="Hello World!"
 ```
 
