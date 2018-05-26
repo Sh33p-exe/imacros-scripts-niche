@@ -17,7 +17,7 @@ const iMacros = window.QueryInterface(imns.Ci.nsIInterfaceRequestor)
     .QueryInterface(imns.Ci.nsIInterfaceRequestor)
     .getInterface(imns.Ci.nsIDOMWindow).iMacros;
 //Create random username for gmail
-function username(len) {
+function xusername(len) {
     let text = '';
     let charset = "abcdefghijklmnopqrstuvwxyz1234567890"; //letters and numbers
     //Randomize letters
@@ -41,8 +41,8 @@ for (let i = 0; i < total_accounts; i++) {
 
     let firstname = EN_names[Math.floor((Math.random() * EN_names.length) + 1)]; //Random first name
     let lastname = EN_names[Math.floor((Math.random() * EN_names.length) + 1)]; //Random last name
-    let username = username(16); //Random letters
-    let password = username(9); //Random password
+    let username = xusername(16); //Random letters
+    let password = xusername(9); //Random password
     //Start Macro
     let macro = "CODE:";
     macro += "CLEAR" + jsLF;
