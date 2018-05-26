@@ -1,7 +1,6 @@
 # iMacros Scripts
 
-
-An open source iMacros scripts for most popular niches :)
+An open source macros scripts for most popular niches :)
 
 ## Requirements
 - Mac OS or Linux or Windows
@@ -10,7 +9,7 @@ An open source iMacros scripts for most popular niches :)
 
 
 ## Dependencies
-Firefox ESR 52| iMacros 8.9.7
+Firefox 52 ESR| iMacros 8.9.7
 ------|------
 [All Versions](https://www.mozilla.org/en-US/firefox/organizations/) | [Download](https://addons.mozilla.org/firefox/downloads/file/428670/type:attachment/imacros_for_firefox-8.9.7-fx.xpi?src=version-history)
 
@@ -30,9 +29,9 @@ git clone https://github.com/jinzocode/imacros-scripts.git
 
 2. Copy & Paste the script you want inside ``iMacros/Macros`` folder
 
-3. Create your own config you will find examples inside datasources folder. (Each script has custom datasource file or more)
+3. Create your own config you will find examples inside **Datasources** folder. (Each script has custom **Datasource** file or more)
 
-4. Refresh the sidepanel of iMacros
+4. Refresh the **SidePanel** of iMacros
 
 5. Select the script you want then press **play**
 
@@ -52,17 +51,9 @@ git clone https://github.com/jinzocode/imacros-scripts.git
 - SAVEAS TYPE=CPL is not available anymore
 - File Upload in the TAG command cannot be supported
 - No more CLICK (X/Y) commands expect existing commands
-- JavaScript languages is so limited as well as methods like  `imns` and `iMacros` no longer possible
+- JavaScript language is so limited as well as methods like  `imns` and `iMacros` no longer possible
 - No method for `window-mediator`
 - No Security Updates/No any kind of risks to  worry about
-
-
-#### Download
-
-| Firefox ESR  | iMacros Latest Version |
-| ------------- | ------------- |
-| [Download](https://www.mozilla.org/en-US/firefox/organizations/)  | [Download](https://addons.mozilla.org/ar/firefox/addon/imacros-for-firefox/)|
-
 
 
 * Note: you will need to uninstall any other Firefox versions first.
@@ -78,7 +69,7 @@ We use that method to access Firefox UI or even control iMacros it self like sto
 
 Example for usage 
 ```
-window.iMacros.jsplayer2.stop();//imacros stop button
+window.iMacros.jsplayer2.stop();//iMacros stop button
 ```
 
 Usage with DOM
@@ -94,7 +85,7 @@ window.document.querySelector('body').textContent;
 ```
 
 
-Those messages means you need to completely forgot ``window content`` methods.
+these messages means you need to completely forgot ``window content`` methods.
 
 Alternative using to click or fill forms using iMacros Basic Language
 
@@ -142,7 +133,7 @@ function getFileLines(file_path) {
 In case of 9.0.3 its impossible to use that function
 some workaround with basic iMacros Language and some javascript:
 
-```
+```javascript
 function getFileLines(datasource_file) {
   let jsLF = "\n";
   let lines = 0;
@@ -190,7 +181,7 @@ TAG POS=1 TYPE=INPUT:FILE FORM=NAME:upload ATTR=NAME:uploaded_file CONTENT={file
 
 That's it
 
-##### Some Better Ideas
+#### Some Better Ideas
 The good [news](https://imacros.net/imacros-firefox-beta-coming-soon/) is there is an upcoming version for firefox quantum from iMacros developers matter of time.
 
 Also without coding as alternative if you want the latest version just get the full iMacros version however it's not free and paid only works on Windows OS
@@ -208,7 +199,8 @@ Please open a new [issue](https://github.com/jinzocode/imacros-scripts/issues/ne
 MIT: http://rem.mit-license.org
 
 #### End User License Agreement (EULA)
-1. You will not use the libray for **spam** or **violation** the terms of usage for any website or any other malicious activity.
+
+1. You will not use the iMacros Scripts for **spam** or **violation** the terms of usage for any website or any other malicious activity.
 2. We / You will not support anyone who is violating this EULA conditions
 3. Repository is just for learning / personal purposes thus should not be part of any service available on the Internet that is trying to do any malicious activity (mass bulk request, spam etc.)
 

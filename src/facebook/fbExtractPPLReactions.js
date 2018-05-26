@@ -1,7 +1,7 @@
 ﻿/////////////////////////////////////////////////////////
 //@github https://github.com/jinzocode/imacros-scripts//
 ///////////////////////////////////////////////////////
-//A variable being used as memory to remmeber the next loop session by using new lines between every command.
+//A variable being used as memory to remember the next loop session by using new lines between every command.
 var jsLF = "\n";
 //Loop, error handling variables
 var i, retcode, errtext;
