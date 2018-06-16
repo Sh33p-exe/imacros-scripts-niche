@@ -7,9 +7,9 @@ const jsLF = "\n";
 var i, retcode, errtext;
 var add_img, img_path, total_accounts;
 //Enumerating all windows of a given type and getting the most recent / any window of a given type.
-// const windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
-// .getService(Components.interfaces.nsIWindowMediator);
-// var window = windowMediator.getMostRecentWindow("navigator:browser");
+const windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+.getService(Components.interfaces.nsIWindowMediator);
+var window = windowMediator.getMostRecentWindow("navigator:browser");
 ///////////////////////////////////////////////////////////////////////////
 //A method to access iMacros interface
 const iMacros = window.QueryInterface(imns.Ci.nsIInterfaceRequestor)
