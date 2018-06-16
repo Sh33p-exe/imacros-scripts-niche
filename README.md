@@ -3,16 +3,15 @@
 An open source macros scripts for most popular niches :)
 
 ## Requirements
-- Mac OS or Linux or Windows
-- Firefox ESR or WaterFox v55
-- iMacros 8.9.7 (Add-on)
+
+| Operating System | Browser | Addon |
+| --- | --- | --- |
+| Windows XP/Vista/7/8.1/10 | [Firefox 52 ESR](https://www.mozilla.org/en-US/firefox/organizations/all/#legacy "This link will take you away from steemit.com") | [iMacros 8.9.7](https://addons.mozilla.org/ar/firefox/addon/imacros-for-firefox/versions/ "This link will take you away from steemit.com") |
+| Linux | [Firefox 52 ESR](https://www.mozilla.org/en-US/firefox/organizations/all/#legacy "This link will take you away from steemit.com") | [iMacros 8.9.7](https://addons.mozilla.org/ar/firefox/addon/imacros-for-firefox/versions/ "This link will take you away from steemit.com") |
+| Mac OS | [Firefox 52 ESR](https://www.mozilla.org/en-US/firefox/organizations/all/#legacy "This link will take you away from steemit.com") | [iMacros 8.9.7](https://addons.mozilla.org/ar/firefox/addon/imacros-for-firefox/versions/ "This link will take you away from steemit.com") |
 
 
-## Dependencies
-Firefox 52 ESR| iMacros 8.9.7
-------|------
-[All Versions](https://www.mozilla.org/en-US/firefox/organizations/) | [Download](https://addons.mozilla.org/firefox/downloads/file/428670/type:attachment/imacros_for_firefox-8.9.7-fx.xpi?src=version-history)
-
+That's it
 ![download_imacros](download.png)
 
 *** Stop Auto Update for iMacros 8.9.7 because the newer version no longer supports some features.
@@ -39,7 +38,7 @@ git clone https://github.com/jinzocode/imacros-scripts.git
 
 - Don't use play loop as JavaScript itself has loops.
 
-## Why iMacros 8.9.7 not latest 9.0.3?
+## Why iMacros 8.9.7 is better than 9.0.3?
 - Full support for window interface
 - Full support for must javascript language
 - Stable & Secure with good feedbacks according to imacros.net
@@ -66,7 +65,7 @@ const windowMediator = Components.classes["@mozilla.org/appshell/window-mediator
     .getService(Components.interfaces.nsIWindowMediator);
 const window = windowMediator.getMostRecentWindow("navigator:browser");
 ```
-We use that method to access Firefox UI or even control iMacros it self like stop or control the windows UP/DOWN/Bottom with some DOM methods to ensure the access to window content.
+Use that method to access Firefox UI or even control iMacros it self like stop or control the windows UP/DOWN/Bottom with some DOM methods to ensure the access to window content.
 
 Example for usage 
 ```javascript
@@ -85,8 +84,7 @@ Another Example with DOM to get element ``textContent``
 window.document.querySelector('body').textContent;
 ```
 
-
-these messages means you need to completely forgot ``window content`` methods.
+Ater pressing **play** an error messages will appear means you need to completely forgot ``window content`` methods.
 
 Alternative using to click or fill forms using iMacros Basic Language
 
@@ -201,7 +199,7 @@ MIT: http://rem.mit-license.org
 
 #### End User License Agreement (EULA)
 
-1. You will not use the iMacros Scripts for **spam** or **violation** the terms of usage for any website or any other malicious activity.
+1. You will not use the macros scripts for **spam** or **violation** the terms of usage for any website or any other malicious activity.
 2. We / You will not support anyone who is violating this EULA conditions
-3. Repository is just for learning / personal purposes thus should not be part of any service available on the Internet that is trying to do any malicious activity (mass bulk request, spam etc.)
-
+3. You will not sell or trade these scripts or trying to remove any copyrights refer to this repository.
+4. Repository is just for learning / personal purposes thus should not be part of any service available on the Internet that is trying to do any malicious activity (mass bulk request, spam etc.)
