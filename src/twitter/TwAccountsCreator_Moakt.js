@@ -115,7 +115,7 @@ subs += "TAG POS=1 TYPE=INPUT:SUBMIT FORM=ID:oauth_form ATTR=ID:allow" + jsLF;
 
 function AppsaveAs(user) {
     iimSet("usr", user);
-    iimPlayCode("SET !EXTRACT {{usr}}\nSAVEAS TYPE=EXTRACT FOLDER=* FILE=AlshqrdyhSubs.txt");
+    iimPlayCode("SET !EXTRACT {{usr}}\nSAVEAS TYPE=EXTRACT FOLDER=* FILE=WebsiteSubs.txt");
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -177,11 +177,11 @@ try {
                 // break main;
             }
         } else {
-            alert("Error! Please Contact with the developer!");
+            alert("Error: Please Contact with the developer.");
             break;
         }
     }
 }
 catch (err) {
-    iimDisplay("Error: \n" + err + "\nPlease contact with script developer!");
+    iimDisplay("Error: \n" + err + "\nPlease contact with script developer.");
 }
