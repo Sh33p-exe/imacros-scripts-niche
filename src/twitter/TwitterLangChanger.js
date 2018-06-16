@@ -10,7 +10,7 @@ let nlang = 0;
 //Enumerating all windows of a given type and getting the most recent / any window of a given type. (just commented because of dashboard)
 // const windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
 // .getService(Components.interfaces.nsIWindowMediator);
-// const window = windowMediator.getMostRecentWindow("navigator:browser");
+// var window = windowMediator.getMostRecentWindow("navigator:browser");
 const iMacros = window.QueryInterface(imns.Ci.nsIInterfaceRequestor)
     .getInterface(imns.Ci.nsIWebNavigation)
     .QueryInterface(imns.Ci.nsIDocShellTreeItem).rootTreeItem

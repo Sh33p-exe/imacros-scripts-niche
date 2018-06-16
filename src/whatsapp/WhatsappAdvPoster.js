@@ -11,7 +11,7 @@ var i, retcode, errtext, imdata, immacros, settings = [],
 const jsLF = "\n";
 // const windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
 //     .getService(Components.interfaces.nsIWindowMediator);
-// const window = windowMediator.getMostRecentWindow("navigator:browser");
+// var window = windowMediator.getMostRecentWindow("navigator:browser");
 const _cssdash = 'font-family: Tahoma,sans-serif;line-height: 18px;font-size: 16px;color: #8899a6;width: 80%;margin: 5em auto;padding: 50px;background-color: #fff;border-radius: 1em;';
 const _cssinput = 'display: inline-block;padding: 4px;margin: 0;outline: 0;background-color: #fff;border: 1px solid #e1e8ed;border-radius: 3px;';
 const _cssbutton = 'font-size: 14px;font-weight: bold;color: white;padding: 9px 18px;border: 1px solid #3b94d9;border-radius: 3px;background-color: #50a5e6;outline: 0;display: inline-block;';

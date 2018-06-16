@@ -63,7 +63,7 @@ git clone https://github.com/jinzocode/imacros-scripts.git
 ```javascript
 const windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
     .getService(Components.interfaces.nsIWindowMediator);
-const window = windowMediator.getMostRecentWindow("navigator:browser");
+var window = windowMediator.getMostRecentWindow("navigator:browser");
 ```
 Use that method to access Firefox UI or even control iMacros it self like stop or control the windows UP/DOWN/Bottom with some DOM methods to ensure the access to window content.
 

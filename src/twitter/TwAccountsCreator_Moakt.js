@@ -15,7 +15,7 @@ var myimg = imfolder + "Downloads\\";
 
 const windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
     .getService(Components.interfaces.nsIWindowMediator);
-const window = windowMediator.getMostRecentWindow("navigator:browser");
+var window = windowMediator.getMostRecentWindow("navigator:browser");
 
 function count_rows(file_path) {
     const CRLF = "\r\n";

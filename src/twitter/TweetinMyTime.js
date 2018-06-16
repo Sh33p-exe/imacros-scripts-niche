@@ -8,7 +8,7 @@ var i, retcode, errtext;
 //Enumerating all windows of a given type and getting the most recent / any window of a given type.
 const windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
   .getService(Components.interfaces.nsIWindowMediator);
-const window = windowMediator.getMostRecentWindow("navigator:browser");
+var window = windowMediator.getMostRecentWindow("navigator:browser");
 ////////////////////////////////////////////////////////////////////////////////////////
 //A method to access iMacros interface
 let iMacros = window.QueryInterface(imns.Ci.nsIInterfaceRequestor)

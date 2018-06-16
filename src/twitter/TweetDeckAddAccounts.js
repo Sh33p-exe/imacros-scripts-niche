@@ -3,7 +3,7 @@ var i, retcode, errtext;
 var count = 0;
 const windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
     .getService(Components.interfaces.nsIWindowMediator);
-const window = windowMediator.getMostRecentWindow("navigator:browser");
+var window = windowMediator.getMostRecentWindow("navigator:browser");
 
 const iMacros = window.QueryInterface(imns.Ci.nsIInterfaceRequestor)
     .getInterface(imns.Ci.nsIWebNavigation)
