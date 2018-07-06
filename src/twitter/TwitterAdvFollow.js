@@ -2,7 +2,7 @@
 //@github https://github.com/jinzocode/imacros-scripts
 /////////////////////////////////////[Edit Values Here]/////////////////////////////////////////
 var account_interval_seconds = [10, 20]; //Interval between every account
-var follow_interval_seconds = [5, 10]; //Interval between every follow
+var follow_interval_seconds = [1, 2]; //Interval between every follow
 var round_interval_seconds = [5, 50]; //Interval between every round
 /////////////////////////////////////[!-DON'T EDIT ANYTHING AFTER THIS LINE]/////////////////////
 //A variable being used as memory to remember the next loop session by using new lines between every command for iMacros.
