@@ -2,7 +2,7 @@
 
 #### Preview for Modern Twitter Interface
 
-https://steemitimages.com/0x0/https://cdn.steemitimages.com/DQmSWmoE9onUkMtnyR4s5U2U1c2q7Ta1wx8J7knSEtxhQT4/creator.gif
+![](https://steemitimages.com/0x0/https://cdn.steemitimages.com/DQmSWmoE9onUkMtnyR4s5U2U1c2q7Ta1wx8J7knSEtxhQT4/creator.gif)
 
 #### Features
 
