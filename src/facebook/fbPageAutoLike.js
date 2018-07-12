@@ -1,7 +1,4 @@
-﻿////////////////////////////////////////////////////////
-//@github https://github.com/jinzocode/imacros-scripts
-///////////////////////////////////////////////////////
-var iMacros = window.QueryInterface(imns.Ci.nsIInterfaceRequestor)
+﻿var iMacros = window.QueryInterface(imns.Ci.nsIInterfaceRequestor)
     .getInterface(imns.Ci.nsIWebNavigation)
     .QueryInterface(imns.Ci.nsIDocShellTreeItem).rootTreeItem
     .QueryInterface(imns.Ci.nsIInterfaceRequestor)

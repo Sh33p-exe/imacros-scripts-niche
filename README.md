@@ -1,4 +1,4 @@
-# iMacros Scripts
+# iMacros Scripts  Niche
 
 An open source macros scripts for most popular niches :)
 
@@ -23,7 +23,7 @@ That's it
 
 Clone the git repository with
 ```
-git clone https://github.com/jinzocode/imacros-scripts.git
+git clone https://github.com/jinzocode/imacros-scripts-niche.git
 ```
 
 2. Copy & Paste the script you want inside ``iMacros/Macros`` folder
@@ -192,7 +192,7 @@ That version will be able to run all Firefox iMacros 8.7.9 scripts without issue
 So you don't have to worry about anything.
 
 ## Bugs
-Please open a new [issue](https://github.com/jinzocode/imacros-scripts/issues/new)
+Please open a new [issue](https://github.com/jinzocode/imacros-scripts-niche/issues/new)
 
 ## License
 MIT: http://rem.mit-license.org

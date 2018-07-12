@@ -1,7 +1,4 @@
-﻿ ////////////////////////////////////////////////////////
-//@github https://github.com/jinzocode/imacros-scripts
-///////////////////////////////////////////////////////
- /*jshint esversion: 6 */
+﻿/*jshint esversion: 6 */
  var jsLF = "\n";
   var iMacros = window.QueryInterface(imns.Ci.nsIInterfaceRequestor)
   .getInterface(imns.Ci.nsIWebNavigation)

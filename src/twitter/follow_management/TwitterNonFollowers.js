@@ -1,7 +1,4 @@
-﻿////////////////////////////////////////////////////////
-//@github https://github.com/jinzocode/imacros-scripts
-///////////////////////////////////////////////////////
-var jsLF = "\n";
+﻿var jsLF = "\n";
 var i, retcode, errtext;
 var count = 0;
 var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]

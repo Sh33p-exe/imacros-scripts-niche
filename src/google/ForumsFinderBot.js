@@ -1,7 +1,4 @@
-﻿////////////////////////////////////////////////////////
-//@github https://github.com/jinzocode/imacros-scripts
-///////////////////////////////////////////////////////
-var jsLF = "\n";
+﻿var jsLF = "\n";
 var i, retcode, errtext;
 var countfree = 0;
 var countdown = 0;

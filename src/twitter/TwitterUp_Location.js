@@ -1,6 +1,3 @@
-////////////////////////////////////////////////////////
-//@github https://github.com/jinzocode/imacros-scripts
-///////////////////////////////////////////////////////
 var jsLF = "\n";
 var i, retcode, errtext;
 var count = 0;
@@ -54,7 +51,7 @@ function Config(config_file, limit) {
 var login = "CODE:";
 login += "SET !ERRORIGNORE YES" + jsLF;
 login += "SET !DATASOURCE_DELIMITER :" + jsLF;
-login += "SET !DATASOURCE TwitterAccountsUp.csv" + jsLF;
+login += "SET !DATASOURCE TwitterAccountsUp.csv" + jsLF; //Data source file
 login += "SET !DATASOURCE_COLUMNS 3" + jsLF;
 login += "SET !DATASOURCE_LINE {{loop}}" + jsLF;
 login += "URL GOTO=https://m.twitter.com/login?username_or_email={{!COL1}}" + jsLF;

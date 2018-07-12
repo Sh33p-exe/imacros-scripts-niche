@@ -1,7 +1,4 @@
-﻿/////////////////////////////////////////////////////////
-//@github https://github.com/jinzocode/imacros-scripts//
-///////////////////////////////////////////////////////
-var jsLF = "\n";
+﻿var jsLF = "\n";
 var i, retcode, errtext, addimg, addbio, addco, min, max, count = 0,
     good = 0,
     bad = 0,

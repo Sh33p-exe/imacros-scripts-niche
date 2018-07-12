@@ -1,7 +1,4 @@
-﻿////////////////////////////////////////////////////////
-//@github https://github.com/jinzocode/imacros-scripts
-///////////////////////////////////////////////////////
-var jsLF = "\n";
+﻿var jsLF = "\n";
 for (var i = 1;; i++) {
   var macro = "CODE:";
   macro += "CLEAR" + jsLF;

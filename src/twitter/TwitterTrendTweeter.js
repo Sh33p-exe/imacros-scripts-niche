@@ -1,7 +1,4 @@
-﻿////////////////////////////////////////////////////////
-//@github https://github.com/jinzocode/imacros-scripts
-///////////////////////////////////////////////////////
-var jsLF = "\n";
+﻿var jsLF = "\n";
 var i, retcode, errtext;
 var count = 0;
 var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
@@ -16,8 +13,6 @@ var iMacros = window.QueryInterface(imns.Ci.nsIInterfaceRequestor)
 var filename = iMacros._currentMacro.name;
 var imfolder = (iMacros._currentMacro.path).match(/.(.*?).Macros./g);
 var myimg = imfolder + "Downloads";
-
-// var datapath = (iMacros._currentMacro.path).replace(filename, '').replace(/\/Macros/g, '/Datasources');
 var datapath = (iMacros._currentMacro.path).replace(filename, '').replace(/\\Macros\\/g, '\\Datasources\\');
 
 function lineCount(file_path) {
@@ -75,10 +70,6 @@ function getRandomInt(min, max) {
 function whitePage() {
     iimPlayCode("TAB CLOSEALLOTHERS\nURL GOTO=https://m.twitter.com");
 }
-
-// function Help(message) {
-//     return window.document.querySelectorAll("body")[0].innerHTML += '<div class="iRightSideBar" style="font-family:Segoe UI,Tahoma,Arial,sans-serif;border-radius: 1em;text-align:right;font-size:16px;;direction: rtl; position: fixed; top: 0px; right: 0; margin: 1ex; padding: 1em; background: orange; width: 15%; hieght: 100px; z-index: 6666; opacity: 0.9;"> <p style="font-size:14px;"></p> <ul style="margin:0ex;">' + message + '</ul></div>';
-// }
 
 function goBack(message) {
     whitePage();

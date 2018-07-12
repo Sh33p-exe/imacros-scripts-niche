@@ -1,7 +1,4 @@
-﻿////////////////////////////////////////////////////////////////////////////////////////
-//@github https://github.com/jinzocode/imacros-scripts
-////////////////////////////////////////////////////////////////////////////////////////
-//A variable being used as memory to remember the next loop session by using new lines between every command.
+﻿//A variable being used as memory to remember the next loop session by using new lines between every command.
 var jsLF = "\n";
 //Loop, error handling variables, language, number of accounts
 var i, retcode, errtext, naccounts, lang;
@@ -22,7 +19,7 @@ var datapath = (iMacros._currentMacro.path).replace(filename, '').replace(/\\Mac
 let _cssdash = 'font-family: Tahoma,sans-serif;line-height: 18px;font-size: 16px;color: #8899a6;width: 600px;margin: 5em auto;padding: 50px;background-color: #fff;border-radius: 1em;';
 let _cssinput = 'display: inline-block;padding: 4px;margin: 0;outline: 0;background-color: #fff;border: 1px solid #e1e8ed;border-radius: 3px;';
 let _cssbutton = 'font-size: 14px;font-weight: bold;color: white;padding: 9px 18px;border: 1px solid #3b94d9;border-radius: 3px;background-color: #50a5e6;outline: 0;display: inline-block;';
-let file_login = "TwitterAccounts.csv";
+let file_login = "TwitterAccounts.csv"; //datasource file
 let total_accounts = lineCount(datapath + file_login);
 ////////////////////////////////////////////////////////
 //Open dashboard

@@ -1,6 +1,3 @@
-/////////////////////////////////////////////////////////
-//@github https://github.com/jinzocode/imacros-scripts
-///////////////////////////////////////////////////////
 //Use true/false/1/0 only
 var temp_mail_mohmal = true; //use temp mail mohmal if false will use moakt.com
 banned_emails = ["bareed.ws"]; //an array for banned emails to avoid
