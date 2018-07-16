@@ -1,4 +1,4 @@
-# Facebook Group Ultimate Poster
+# Facebook Groups Ultimate Poster
 Auto post with one facebook account into all your groups with multiple posts support as well as images support and intervals.
 
 ## Feautres
