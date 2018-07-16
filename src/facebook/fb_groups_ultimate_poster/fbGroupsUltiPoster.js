@@ -59,15 +59,15 @@ function playMacro(groups, contents, images, time1, time2) {
             } else {
                 code += "TAG POS=1 TYPE=A  ATTR=TXT:Write<SP>Post\n";
                 code += "TAG POS=1 TYPE=INPUT:SUBMIT  ATTR=name:view_photo\n";
-                //
+                //input all images in array
                 for (let key2 in images) {
                     if (!isNaN(key2)) {
                         code += "TAG POS=1 TYPE=INPUT:FILE ATTR=NAME:file" + (parseInt(key2) + parseInt(1)) + " CONTENT=" + images[key2].getAttribute('data').replace(/ /g, "<sp>") + "\n";
                     }
                 }
-                code += "TAG POS=1 TYPE=INPUT:SUBMIT  ATTR=name:add_photo_done\n";
-                code += "TAG POS=1 TYPE=TEXTAREA ATTR=ID:* CONTENT=" + contents[randomInterval(0, contents.length - 1)].value.replace(/ /g, "<sp>").replace(/\n/g, "<br>") + "\n";
-                code += "TAG POS=1 TYPE=INPUT:SUBMIT  ATTR=NAME:view_post\n";
+                code += "TAG POS=1 TYPE=INPUT:SUBMIT  ATTR=name:add_photo_done\n";  //submit photos
+                code += "TAG POS=1 TYPE=TEXTAREA ATTR=ID:* CONTENT=" + contents[randomInterval(0, contents.length - 1)].value.replace(/ /g, "<sp>").replace(/\n/g, "<br>") + "\n"; //interval
+                code += "TAG POS=1 TYPE=INPUT:SUBMIT  ATTR=NAME:view_post\n"; //submit post
                 code += "WAIT SECONDS=" + randomInterval(time1, time2) + "\n";
             }
             iimPlayCode(mainpostCode + code);
