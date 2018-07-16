@@ -6,18 +6,19 @@ An open source macros scripts for most popular niches :)
 
 | Operating System | Browser | Addon |
 | --- | --- | --- |
-| Windows XP/Vista/7/8.1/10 | [Firefox 52 ESR](https://www.mozilla.org/en-US/firefox/organizations/all/#legacy "This link will take you away from steemit.com") | [iMacros 8.9.7](https://addons.mozilla.org/ar/firefox/addon/imacros-for-firefox/versions/ "This link will take you away from steemit.com") |
-| Linux | [Firefox 52 ESR](https://www.mozilla.org/en-US/firefox/organizations/all/#legacy "This link will take you away from steemit.com") | [iMacros 8.9.7](https://addons.mozilla.org/ar/firefox/addon/imacros-for-firefox/versions/ "This link will take you away from steemit.com") |
-| Mac OS | [Firefox 52 ESR](https://www.mozilla.org/en-US/firefox/organizations/all/#legacy "This link will take you away from steemit.com") | [iMacros 8.9.7](https://addons.mozilla.org/ar/firefox/addon/imacros-for-firefox/versions/ "This link will take you away from steemit.com") |
+| Windows XP/Vista/7/8.1/10 | [Firefox 52 ESR](https://www.mozilla.org/en-US/firefox/organizations/all/#legacy) | [iMacros 8.9.7](https://addons.mozilla.org/ar/firefox/addon/imacros-for-firefox/versions/) |
+| Linux | [Firefox 52 ESR](https://www.mozilla.org/en-US/firefox/organizations/all/#legacy) | [iMacros 8.9.7](https://addons.mozilla.org/ar/firefox/addon/imacros-for-firefox/versions/) |
+| Mac OS | [Firefox 52 ESR](https://www.mozilla.org/en-US/firefox/organizations/all/#legacy) | [iMacros 8.9.7](https://addons.mozilla.org/ar/firefox/addon/imacros-for-firefox/versions/) |
 
+Also you can use [iMacros Paid Version](https://imacros.net/download/)
 
 That's it
 ![download_imacros](download.png)
 
-*** Stop Auto Update for iMacros 8.9.7 because the newer version no longer supports some features.
+*** This repo will never support iMacros Firefox Quantom because (iMacros JavaSript API) isn't supported any more.
+*** Stop Auto Update for iMacros 8.9.7 because the newer versions no longer supports (iMacros JavaSript API)
 
-
-## How to use?
+## Install Instructions
 
 1. Get the source
 
