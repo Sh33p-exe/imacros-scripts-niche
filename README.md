@@ -6,18 +6,17 @@ An open source macros scripts for most popular niches :)
 
 | Operating System | Browser | Addon |
 | --- | --- | --- |
-| Windows XP/Vista/7/8.1/10 | [Firefox 52 ESR](https://www.mozilla.org/en-US/firefox/organizations/all/#legacy) | [iMacros 8.9.7](https://addons.mozilla.org/ar/firefox/addon/imacros-for-firefox/versions/) |
-| Linux | [Firefox 52 ESR](https://www.mozilla.org/en-US/firefox/organizations/all/#legacy) | [iMacros 8.9.7](https://addons.mozilla.org/ar/firefox/addon/imacros-for-firefox/versions/) |
-| Mac OS | [Firefox 52 ESR](https://www.mozilla.org/en-US/firefox/organizations/all/#legacy) | [iMacros 8.9.7](https://addons.mozilla.org/ar/firefox/addon/imacros-for-firefox/versions/) |
+| Windows XP/Vista/7/8.1/10 | [Firefox 52 ESR](https://www.mozilla.org/en-US/Firefox/organizations/all/#legacy) | [iMacros 8.9.7](https://addons.mozilla.org/ar/Firefox/addon/imacros-for-Firefox/versions/) |
+| Linux | [Firefox 52 ESR](https://www.mozilla.org/en-US/Firefox/organizations/all/#legacy) | [iMacros 8.9.7](https://addons.mozilla.org/ar/Firefox/addon/imacros-for-Firefox/versions/) |
+| Mac OS | [Firefox 52 ESR](https://www.mozilla.org/en-US/Firefox/organizations/all/#legacy) | [iMacros 8.9.7](https://addons.mozilla.org/ar/Firefox/addon/imacros-for-Firefox/versions/) |
 
 Also you can use [iMacros Paid Version](https://imacros.net/download/)
 
-That's it
 ![download_imacros](download.png)
 
-*** This repo will never support iMacros Firefox Quantom because (iMacros JavaSript API) isn't supported any more.
+*** This repo will never support iMacros Firefox Quantom because (built-in JavaScript) isn't supported any more.
 
-*** Stop Auto Update for iMacros 8.9.7 because the newer versions no longer supports (iMacros JavaSript API)
+*** Stop Auto Update for iMacros 8.9.7 because the newer versions no longer supports (built-in JavaScript)
 
 ## Install Instructions
 
@@ -180,12 +179,8 @@ TAG POS=1 TYPE=INPUT:FILE FORM=NAME:upload ATTR=NAME:uploaded_file CONTENT={file
 ``
 * You can use CLICK (X/Y) commands but you can't record it any more.
 
-That's it
-
-#### Some Better Ideas
-The good [news](https://imacros.net/imacros-firefox-beta-coming-soon/) is there is an upcoming version for firefox quantum from iMacros developers matter of time.
-
-Also without coding as alternative if you want the latest version just get the full iMacros version however it's not free and paid only works on Windows OS
+#### Alternative
+Wwithout coding as alternative if you want the latest version just get the full iMacros version however it's not free and paid only works on Windows OS
 
 https://imacros.net/download/
 
