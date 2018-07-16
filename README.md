@@ -16,6 +16,7 @@ That's it
 ![download_imacros](download.png)
 
 *** This repo will never support iMacros Firefox Quantom because (iMacros JavaSript API) isn't supported any more.
+
 *** Stop Auto Update for iMacros 8.9.7 because the newer versions no longer supports (iMacros JavaSript API)
 
 ## Install Instructions
