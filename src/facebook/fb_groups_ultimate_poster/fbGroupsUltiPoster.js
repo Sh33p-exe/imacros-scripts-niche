@@ -13,7 +13,7 @@ let contents = null,
     groups = null;
 //Main instructions for first click to close all other tabs and  stop testing extract as well as page time out and ignore any macro errors.
 let mainCode = "TAB CLOSEALLOTHERS\n SET !EXTRACT_TEST_POPUP NO\n SET !TIMEOUT_PAGE 10\n SET !ERRORIGNORE YES\n SET !TIMEOUT_STEP 0.1\n";
-//Second instructions for macro posting proccess no testing andd page timeout as well as timeout step.
+//Second instructions for macro posting process no testing and page timeout as well as timeout step.
 let mainpostCode = "SET !EXTRACT_TEST_POPUP NO\n SET !TIMEOUT_PAGE 10\n SET !ERRORIGNORE YES\n SET !TIMEOUT_STEP 0.1\n";
 /** @returns random Interval between two numbers */
 function randomInterval(a, b) {
@@ -61,6 +61,7 @@ function playMacro(groups, contents, images, time1, time2) {
                 code += "TAG POS=1 TYPE=INPUT:SUBMIT  ATTR=name:view_photo\n";
                 //input all images in array
                 for (let key2 in images) {
+                    //if image key isn't null push it into facebook
                     if (!isNaN(key2)) {
                         code += "TAG POS=1 TYPE=INPUT:FILE ATTR=NAME:file" + (parseInt(key2) + parseInt(1)) + " CONTENT=" + images[key2].getAttribute('data').replace(/ /g, "<sp>") + "\n";
                     }
