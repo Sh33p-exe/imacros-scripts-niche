@@ -1,16 +1,17 @@
-﻿/////////////////////////////////////[Edit Values Here]////////////////////////////////////////////
-var account_interval_seconds = [10, 20]; //Interval between every account
-var follow_interval_seconds = [1, 2]; //Interval between every follow
-var round_interval_seconds = [5, 50]; //Interval between every round
-///////////////////////////////////[!-DON'T EDIT ANYTHING AFTER THIS LINE]///////////////////////
+﻿////////////////////////////////////////////////////////////////////////////////////////
+const EASY_DEBUG_MODE = false; //To active Debug mode for developers in iMacros Add-on and support Firefox Developer Tools for source-code changes.
+const account_interval_seconds = [10, 20]; //Interval between every account
+const follow_interval_seconds = [1, 2]; //Interval between every follow
+const round_interval_seconds = [5, 50]; //Interval between every round
+////////////////////////////////////////////////////////////////////////////////////////
 //A variable being used as memory to remember the next loop session by using new lines between every command for iMacros.
-var jsLF = "\n";
+const jsLF = "\n";
 //Loop, error handling variables
-var i, retcode, errtext, count = 0;
+let i, retcode, errtext, count = 0;
 //Enumerating all windows of a given type and getting the most recent / any window of a given type.
 const windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
   .getService(Components.interfaces.nsIWindowMediator);
-var window = windowMediator.getMostRecentWindow("navigator:browser");
+let window = windowMediator.getMostRecentWindow("navigator:browser");
 ////////////////////////////////////////////////////////////////////////////////////////
 //A method to access iMacros interface
 let iMacros = window.QueryInterface(imns.Ci.nsIInterfaceRequestor)
@@ -20,10 +21,9 @@ let iMacros = window.QueryInterface(imns.Ci.nsIInterfaceRequestor)
   .getInterface(imns.Ci.nsIDOMWindow).iMacros;
 let filename = iMacros._currentMacro.name; //Get Script Name
 let folder_mydata = (iMacros._currentMacro.path).replace(filename, '').replace(/\\Macros\\/g, '\\Datasources\\'); //Get Datasources Folder Path
-
 ////////////////////////////////////////////////////////////////////////////////////////
 // Return total lines of any file path.
-function count_rows(file_path) {
+function getFileLines(file_path) {
   const CRLF = "\r\n";
   const LF = "\n";
   let lines = [];
@@ -34,6 +34,7 @@ function count_rows(file_path) {
   eol = lines.length;
   return eol;
 }
+
 // Returns a random integer between min (included) and max (included)
 // Using Math.round() will give you a non-uniform distribution!
 function getRandomIntInclusive(min, max) {
@@ -52,8 +53,8 @@ function getRandom() {
 let file_login = folder_mydata + "TwitterAccounts.csv"; //Datasource for twitter account
 let file_profiles = folder_mydata + "TwitterUsernames.txt"; //Datasource for twitter usernames for followers
 // alert(file_login + "\n" + file_profiles);
-let sum_login = count_rows(file_login); //Total accounts
-let sum_profiles = count_rows(file_profiles); //Total profiles for followers
+let sum_login = getFileLines(file_login); //Total accounts
+let sum_profiles = getFileLines(file_profiles); //Total profiles for followers
 
 let accounts = "CODE:";
 accounts += "SET !ERRORIGNORE YES" + jsLF; //Ignore errors

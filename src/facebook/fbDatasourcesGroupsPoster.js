@@ -19,7 +19,7 @@ var imfolder = (iMacros._currentMacro.path).match(/.(.*?).Macros./g);
 var imdata = imfolder + '\\Datasources\\';
 var immacros = imfolder + '\\Macros\\';
 
-function count_rows(file_path) {
+function getFileLines(file_path) {
 	const CRLF = "\r\n";
 	const LF = "\n";
 	var lines = [];

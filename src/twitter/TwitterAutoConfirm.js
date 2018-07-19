@@ -13,7 +13,7 @@ var filename = iMacros._currentMacro.name;
 var imfolder = (iMacros._currentMacro.path).match(/.(.*?).Macros./g);
 var imdata = imfolder + '\\Datasources\\';
 
-function count_rows(file_path) {
+function getFileLines(file_path) {
     const CRLF = "\r\n";
     const LF = "\n";
     var lines = [];
@@ -69,7 +69,7 @@ repmail += "TAG POS=1 TYPE=A ATTR=TXT:mode_edit<SP>*" + jsLF;
 repmail += "WAIT SECONDS=5" + jsLF;
 repmail += "TAG POS=1 TYPE=DIV ATTR=ID:email-address EXTRACT=TXT" + jsLF;
 
-for (var index = 1; index <= count_rows(imdata + "TwitterAccounts.csv"); index++) {
+for (var index = 1; index <= getFileLines(imdata + "TwitterAccounts.csv"); index++) {
     iimPlayCode("TAB CLOSEALLOTHERS\nCLEAR");
     iimDisplay("Current: " + index);
     iimPlay(tempmail);

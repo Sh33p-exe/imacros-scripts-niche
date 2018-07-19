@@ -13,7 +13,7 @@ var filename = iMacros._currentMacro.name;
 var imfolder = (iMacros._currentMacro.path).match(/.(.*?).Macros./g);
 var imdata = imfolder + '\\Datasources\\';
 
-function count_rows(file_path) {
+function getFileLines(file_path) {
     const CRLF = "\r\n";
     const LF = "\n";
     var lines = [];
@@ -54,14 +54,14 @@ tweet += "WAIT SECONDS=1" + jsLF;
 var hashtag = prompt("Enter your hashtag:", "#tag");
 
 while (true) {
-    for (var index = 1; index <= count_rows(imdata + "TwitterAccounts.csv"); index++) {
+    for (var index = 1; index <= getFileLines(imdata + "TwitterAccounts.csv"); index++) {
         count++;
         iimDisplay("Tweets: " + count);
         iimPlayCode("CLEAR\nTAB CLOSEALLOTHERS");
         iimSet("loop", index);
         iimPlay(login);
         if (window.location.href !== "https://twitter.com/account/access" && window.location.href.indexOf("twitter.com/login") === -1) {
-            iimSet("loop", getRandomInt(1, count_rows(imdata + "Tweets.txt")));
+            iimSet("loop", getRandomInt(1, getFileLines(imdata + "Tweets.txt")));
             iimSet("hashtag", hashtag);
             iimPlay(tweet);
         }

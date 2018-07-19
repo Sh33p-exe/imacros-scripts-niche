@@ -16,7 +16,7 @@ var imfolder = (iMacros._currentMacro.path).match(/.(.*?).Macros./g);
 var imdata = imfolder + '\\Datasources\\';
 var immacros = imfolder + '\\Macros\\';
 
-function count_rows(file_path) {
+function getFileLines(file_path) {
     const CRLF = "\r\n";
     const LF = "\n";
     var lines = [];
@@ -38,7 +38,7 @@ var imagepath = prompt("Video/Image Path:");
 var wait = +prompt("Interval between every message in seconds:");
 var xwait = +prompt("Interval Between every account in seconds:");
 
-for (i = 1; i <= count_rows(imdata + "FbAccounts.txt"); i++) {
+for (i = 1; i <= getFileLines(imdata + "FbAccounts.txt"); i++) {
     //Login to facebook
     var login = "CODE:";
     login += "SET !ERRORIGNORE YES" + jsLF;
@@ -56,7 +56,7 @@ for (i = 1; i <= count_rows(imdata + "FbAccounts.txt"); i++) {
     iimPlay(login);
 
     //Add Comment
-    for (j = 1; j < count_rows(imdata + "FbUsers.txt"); j++) {
+    for (j = 1; j < getFileLines(imdata + "FbUsers.txt"); j++) {
         var macro = "CODE:";
         macro += "SET !ERRORIGNORE YES" + jsLF;
         macro += "SET !TIMEOUT_STEP 3" + jsLF;
@@ -65,7 +65,7 @@ for (i = 1; i <= count_rows(imdata + "FbAccounts.txt"); i++) {
         macro += "URL GOTO=https://www.facebook.com/messages/t/{{!COL1}}" + jsLF;
         macro += "TAG POS=1 TYPE=A ATTR=TXT:Message" + jsLF;
         macro += "SET !DATASOURCE FbComments.txt" + jsLF;
-        macro += "SET !DATASOURCE_LINE " + getRandomInt(1, count_rows(imdata + "FbComments.txt")) + jsLF;
+        macro += "SET !DATASOURCE_LINE " + getRandomInt(1, getFileLines(imdata + "FbComments.txt")) + jsLF;
         macro += "TAG POS=1 TYPE=INPUT:FILE FORM=ACTION:https://* ATTR=ID:js_* CONTENT=" + imagepath + jsLF;
         macro += "EVENTS TYPE=KEYPRESS SELECTOR=\"#js_c\" CHARS={{!COL1}}" + jsLF;
         macro += "TAG POS=1 TYPE=A ATTR=ID:js_34x" + jsLF;

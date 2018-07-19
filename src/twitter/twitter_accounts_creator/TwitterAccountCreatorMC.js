@@ -21,7 +21,7 @@ const windowMediator = Components.classes["@mozilla.org/appshell/window-mediator
     .getService(Components.interfaces.nsIWindowMediator);
 var window = windowMediator.getMostRecentWindow("navigator:browser");
 
-function count_rows(file_path) {
+function getFileLines(file_path) {
     const CRLF = "\r\n";
     const LF = "\n";
     var lines = [];

@@ -16,7 +16,7 @@ var imfolder = (iMacros._currentMacro.path).match(/.(.*?).Macros./g);
 var imdata = imfolder + '\\Datasources\\';
 var immacros = imfolder + '\\Macros\\';
 
-function count_rows(file_path) {
+function getFileLines(file_path) {
     const CRLF = "\r\n";
     const LF = "\n";
     var lines = [];
@@ -71,7 +71,7 @@ cover = global[1];
 location = global[2];
 
 
-for (var index = 1; index <= count_rows(imdata + "TwitterAccountsUp.csv"); index++) {
+for (var index = 1; index <= getFileLines(imdata + "TwitterAccountsUp.csv"); index++) {
     iimPlayCode("CLEAR");
     iimSet("loop", index);
     iimPlay(login);

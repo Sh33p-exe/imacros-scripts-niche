@@ -14,7 +14,7 @@ var filename = iMacros._currentMacro.name;
 var imfolder = (iMacros._currentMacro.path).match(/.(.*?).Macros./g);
 var imdata = imfolder + '\\Datasources\\';
 
-function count_rows(file_path) {
+function getFileLines(file_path) {
     const CRLF = "\r\n";
     const LF = "\n";
     var lines = [];
@@ -29,7 +29,7 @@ function count_rows(file_path) {
 var wait = +prompt("Interval between every single comment in seconds:");
 
 while (true) {
-    for (i = 1; i <= count_rows(imdata + "FbAccounts.txt"); i++) {
+    for (i = 1; i <= getFileLines(imdata + "FbAccounts.txt"); i++) {
         iimDisplay("Account: " + i);
         var login = "CODE:";
         login += "SET !ERRORIGNORE YES" + jsLF;
@@ -46,7 +46,7 @@ while (true) {
         iimSet("loop", i);
         iimPlay(login);
 
-        for (index = 1; index <= count_rows(imdata + "FbGroups.txt"); index++) {
+        for (index = 1; index <= getFileLines(imdata + "FbGroups.txt"); index++) {
             var macro = "CODE:";
             macro += "SET !ERRORIGNORE YES" + jsLF;
             macro += "SET !TIMEOUT_STEP 1" + jsLF;
@@ -64,7 +64,7 @@ while (true) {
 
             iimPlayCode("WAIT SECONDS=" + wait);
         }
-        for (index = 1; index <= count_rows(imdata + "FbGroups.txt"); index++) {
+        for (index = 1; index <= getFileLines(imdata + "FbGroups.txt"); index++) {
             var macro = "CODE:";
             macro += "SET !ERRORIGNORE YES" + jsLF;
             macro += "SET !TIMEOUT_STEP 1" + jsLF;

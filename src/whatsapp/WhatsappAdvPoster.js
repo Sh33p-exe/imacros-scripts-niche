@@ -22,7 +22,7 @@ var filename = iMacros._currentMacro.name;
 var imfolder = (iMacros._currentMacro.path).match(/.(.*?).Macros./g);
 var imdata = imfolder + 'Datasources\\';
 ////////////////////////////////////////////////////////////////////////////////////////
-function count_rows(file_path) {
+function getFileLines(file_path) {
     const CRLF = "\r\n";
     const LF = "\n";
     let lines = [];
@@ -75,7 +75,7 @@ function dashboard() {
         '<input class="filein" type="file" data="" accept="file_extension">' +
         '<p>Image Text File: "Whatsappimg.txt"</p><br>' +
         '<p>You have : ' +
-        count_rows(imdata + "Whatsappimg.txt") +
+        getFileLines(imdata + "Whatsappimg.txt") +
         ' images</p><br>' +
         '<br><span>Enter your Numbers:</span><br><textarea id="showlist" dir=auto style="height: 150px;width: 150px;' + _cssinput + '" type="text"></textarea>' +
         '<br><br><span>Interval Between every message: </span><br><input class="mmin" value="5" type="text" style="width:50px;' + _cssinput + '"> - <input class="mmax" value="10" type="text" style="width:50px;' + _cssinput + '"> sec<br>' +
@@ -97,7 +97,7 @@ iimPlayCode("SET !TIMEOUT_STEP 300\nTAG POS=1 TYPE=DIV ATTR=CLASS:_*");
 //check if log in
 if (window.document.body.innerText.indexOf('To use WhatsApp on your computer') === -1) {
     try {
-        count_rows(imdata + "Whatsappimg.txt")
+        getFileLines(imdata + "Whatsappimg.txt")
         dashboard();
     } catch (error) {
         alert('Whatsappimg.txt is not exist in datasources, please create it first.');
@@ -185,8 +185,8 @@ if (window.document.body.innerText.indexOf('To use WhatsApp on your computer') =
                         macro += "EVENTS TYPE=KEYPRESS SELECTOR=\"#main>FOOTER>DIV>DIV>DIV>DIV:nth-of-type(2)\" CHARS=" + links[i] + jsLF;
                         macro += "EVENT TYPE=CLICK SELECTOR=\"#main>FOOTER>DIV>BUTTON\" BUTTON=0" + jsLF;
                     }
-                    if (count_rows(imdata + "Whatsappimg.txt") !== 0) {
-                        for (i = 1; i <= count_rows(imdata + "Whatsappimg.txt"); i++) {
+                    if (getFileLines(imdata + "Whatsappimg.txt") !== 0) {
+                        for (i = 1; i <= getFileLines(imdata + "Whatsappimg.txt"); i++) {
                             macro += "SET !ERRORIGNORE YES" + jsLF;
                             macro += "SET !DATASOURCE Whatsappimg.txt" + jsLF;
                             macro += "EVENT TYPE=CLICK SELECTOR=\"#main>HEADER>DIV:nth-of-type(3)>DIV>DIV:nth-of-type(2)>DIV>SPAN\" BUTTON=0" + jsLF;

@@ -16,7 +16,7 @@ var imfolder = (iMacros._currentMacro.path).match(/.(.*?).Macros./g);
 var imdata = imfolder + '\\Datasources\\';
 var immacros = imfolder + '\\Macros\\';
 
-function count_rows(file_path) {
+function getFileLines(file_path) {
 	const CRLF = "\r\n";
 	const LF = "\n";
 	var lines = [];
@@ -52,7 +52,7 @@ macro += "WAIT SECONDS=1.50" + jsLF;
 macro += "SET !TIMEOUT_STEP 0" + jsLF;
 macro += "TAG POS=1 TYPE=H2 ATTR=* EXTRACT=TXT" + jsLF;
 
-var eN = count_rows(imdata + '\\EmailList.txt');
+var eN = getFileLines(imdata + '\\EmailList.txt');
 
 
 var macro;

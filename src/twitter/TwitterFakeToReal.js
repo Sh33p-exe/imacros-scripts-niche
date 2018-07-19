@@ -13,7 +13,7 @@ var filename = iMacros._currentMacro.name;
 var imfolder = (iMacros._currentMacro.path).match(/.(.*?).Macros./g);
 var imdata = imfolder + '\\Datasources\\';
 
-function count_rows(file_path) {
+function getFileLines(file_path) {
     const CRLF = "\r\n";
     const LF = "\n";
     var lines = [];
@@ -76,7 +76,7 @@ confirm += "SET !TIMEOUT_PAGE 4" + jsLF;
 confirm += "TAG POS=1 TYPE=A ATTR=HREF:https://twitter.com/i/redirect?url=*" + jsLF;
 confirm += "TAB CLOSEALLOTHERS" + jsLF;
 
-for (let index = 1; index <= count_rows(imdata + "TwitterAccounts.csv"); index++) {
+for (let index = 1; index <= getFileLines(imdata + "TwitterAccounts.csv"); index++) {
     try {
         var firstname = names[getRandomInt(0, names.length)];
         var lastname = names[getRandomInt(0, names.length)];

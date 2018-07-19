@@ -16,7 +16,7 @@ var imfolder = (iMacros._currentMacro.path).match(/.(.*?).Macros./g);
 var imdata = imfolder + '\\Datasources\\';
 var immacros = imfolder + '\\Macros\\';
 
-function count_rows(file_path) {
+function getFileLines(file_path) {
     const CRLF = "\r\n";
     const LF = "\n";
     var lines = [];
@@ -70,7 +70,7 @@ window.document.querySelectorAll('.run')[0].addEventListener("click", function (
         goBack("Err<br>" + err + "<br>Please open a new issue to make further updates.");
     }
 
-    for (var i = 1; i < count_rows(imdata + "TwitterAccounts.csv"); i++) {
+    for (var i = 1; i < getFileLines(imdata + "TwitterAccounts.csv"); i++) {
         iimPlayCode("CLEAR");
         iimSet("loop", i);
         retcode = iimPlay(login);
@@ -82,7 +82,7 @@ window.document.querySelectorAll('.run')[0].addEventListener("click", function (
             macro += "SET !ERRORIGNORE YES" + jsLF;
             macro += "SET !DATASOURCE_DELIMITER :" + jsLF;
             macro += "SET !DATASOURCE TwitterAccounts.csv" + jsLF;
-            macro += "SET !DATASOURCE_LINE " + getRandomInt(1, count_rows(imdata + "TwitterAccounts.csv")) + jsLF;
+            macro += "SET !DATASOURCE_LINE " + getRandomInt(1, getFileLines(imdata + "TwitterAccounts.csv")) + jsLF;
             macro += "URL GOTO=m.twitter.com/{{!COL1}}" + jsLF;
             macro += "SET !TIMEOUT_STEP 3" + jsLF;
             macro += "TAG POS=4 TYPE=DIV ATTR=TXT:Follow" + jsLF;
