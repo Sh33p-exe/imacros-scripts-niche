@@ -1,4 +1,9 @@
-﻿//A variable being used as memory to remmeber the next loop session by using new lines between every command.
+﻿////////////////////////////////////////////////////////////////////////////////////////
+// DEBUG: For Developers only
+const EASY_DEBUG_MODE = false; //To activate built-in Debug mode for testing in iMacros Add-on and support Firefox Developer Tools for source-code changes.
+const USER_AGENT_STRING = ""; //Please not that change useragent may change the whole website interface
+////////////////////////////////////////////////////////////////////////////////////////
+//A variable being used as memory to remmeber the next loop session by using new lines between every command.
 var jsLF = "\n";
 //Loop, error handling variables
 var i, retcode, errtext;
@@ -7,14 +12,29 @@ var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1
     .getService(Components.interfaces.nsIWindowMediator);
 var window = windowMediator.getMostRecentWindow("navigator:browser");
 ////////////////////////////////////////////////////////////////////////////////////////
-//Reset All Post conent/images/groups values
-let contents = null,
-    images = null,
-    groups = null;
+/**
+ * @description This function will activate built-in iMacros Debug for every single step with more simple algorithm to track changes
+ * Also it adds a support for iMacros Developer Tools, which makes the script debug easy with a little knowledge in HTML Basics and Developer Tools.
+ */
+function onDebug() {
+    if (EASY_DEBUG_MODE) {
+        window.console.log(`%ciMacros DEBUG MODE IS ACTIVATED`, 'background: red; color: white');
+        let first_time = 0;
+        if (!first_time) {
+            iimPlayCode("SET !USERAGENT " + USER_AGENT_STRING + "\n");
+            first_time = 1;
+        }
+        allow_debug = "SET !SINGLESTEP YES\nSET !EXTRACT_TEST_POPUP YES\n";
+        return allow_debug;
+    }
+}
+////////////////////////////////////////////////////////////////////////////////////////
+//Variables for conent/images/groups values
+let contents, images, groups;
 //Main instructions for first click to close all other tabs and  stop testing extract as well as page time out and ignore any macro errors.
-let mainCode = "TAB CLOSEALLOTHERS\n SET !EXTRACT_TEST_POPUP NO\n SET !TIMEOUT_PAGE 10\n SET !ERRORIGNORE YES\n SET !TIMEOUT_STEP 0.1\n";
+let mainCode = onDebug() + "TAB CLOSEALLOTHERS\n SET !EXTRACT_TEST_POPUP NO\n SET !TIMEOUT_PAGE 10\n SET !ERRORIGNORE YES\n SET !TIMEOUT_STEP 0.1\n";
 //Second instructions for macro posting process no testing and page timeout as well as timeout step.
-let mainpostCode = "SET !EXTRACT_TEST_POPUP NO\n SET !TIMEOUT_PAGE 10\n SET !ERRORIGNORE YES\n SET !TIMEOUT_STEP 0.1\n";
+let mainpostCode = onDebug() + "SET !EXTRACT_TEST_POPUP NO\n SET !TIMEOUT_PAGE 10\n SET !ERRORIGNORE YES\n SET !TIMEOUT_STEP 0.1\n";
 /** @returns random Interval between two numbers */
 function randomInterval(a, b) {
     let c = b - a;
@@ -53,7 +73,7 @@ function playMacro(groups, contents, images, time1, time2) {
             code += "URL GOTO=https://m.facebook.com/groups/" + groupID('group_id', groups[key].href) + "\n"; //go to group by id using gub function
             //Check if any inputs in images fields
             if (images.length === 0) {
-                code += "TAG POS=1 TYPE=TEXTAREA ATTR=ID:* CONTENT=" + contents[randomInterval(0, contents.length - 1)].value.replace(/ /g, "<sp>").replace(/\n/g, "<br>") + "\n";//Input group post
+                code += "TAG POS=1 TYPE=TEXTAREA ATTR=ID:* CONTENT=" + contents[randomInterval(0, contents.length - 1)].value.replace(/ /g, "<sp>").replace(/\n/g, "<br>") + "\n"; //Input group post
                 code += "TAG POS=1 TYPE=INPUT:SUBMIT  ATTR=NAME:view_post\n"; //submit inputed post
                 code += "WAIT SECONDS=" + randomInterval(10, 35) + "\n"; //Random Interval between every post
             } else {
@@ -66,7 +86,7 @@ function playMacro(groups, contents, images, time1, time2) {
                         code += "TAG POS=1 TYPE=INPUT:FILE ATTR=NAME:file" + (parseInt(key2) + parseInt(1)) + " CONTENT=" + images[key2].getAttribute('data').replace(/ /g, "<sp>") + "\n";
                     }
                 }
-                code += "TAG POS=1 TYPE=INPUT:SUBMIT  ATTR=name:add_photo_done\n";  //submit photos
+                code += "TAG POS=1 TYPE=INPUT:SUBMIT  ATTR=name:add_photo_done\n"; //submit photos
                 code += "TAG POS=1 TYPE=TEXTAREA ATTR=ID:* CONTENT=" + contents[randomInterval(0, contents.length - 1)].value.replace(/ /g, "<sp>").replace(/\n/g, "<br>") + "\n"; //interval
                 code += "TAG POS=1 TYPE=INPUT:SUBMIT  ATTR=NAME:view_post\n"; //submit post
                 code += "WAIT SECONDS=" + randomInterval(time1, time2) + "\n";
@@ -124,7 +144,7 @@ window.document.querySelectorAll('.run')[0].addEventListener("click", function (
     contents = window.document.querySelectorAll(".ap"); //Get textarea contents
     if (contents[0].value !== "") {
         images = window.document.querySelectorAll(".upfbgr:not([data=\"\"])"); //Post images
-        groups = window.document.querySelectorAll("h3 a");//User groups
+        groups = window.document.querySelectorAll("h3 a"); //User groups
         time1 = window.document.querySelectorAll("input[name='sd']")[0].value; //Min interval
         time2 = window.document.querySelectorAll("input[name='ss']")[0].value; //Max interval
         playMacro(groups, contents, images, time1, time2); //Run play macro

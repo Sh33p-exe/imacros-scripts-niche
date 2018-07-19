@@ -1,3 +1,8 @@
+////////////////////////////////////////////////////////////////////////////////////////
+// DEBUG: For Developers only
+const EASY_DEBUG_MODE = false; //To activate built-in Debug mode for testing in iMacros Add-on and support Firefox Developer Tools for source-code changes.
+const USER_AGENT_STRING = ""; //Please not that change useragent may change the whole website interface
+////////////////////////////////////////////////////////////////////////////////////////
 var jsLF = "\n";
 var i, retcode, errtext;
 var count = 0;
@@ -28,11 +33,28 @@ function getFileLines(file_path) {
 	return eol;
 }
 
+/**
+ * @description This function will activate built-in iMacros Debug for every single step with more advanced algorithm to track changes
+ * Also it adds a support for iMacros Developer Tools, which makes the script debug easy with a little knowledge in HTML Basics and Developer Tools.
+ */
+function onDebug() {
+    if (EASY_DEBUG_MODE) {
+        window.console.log(`%ciMacros DEBUG MODE IS ACTIVATED`, 'background: red; color: white');
+        let first_time = 0;
+        if (!first_time) {
+            iimPlayCode("SET !USERAGENT " + USER_AGENT_STRING + "\n");
+            first_time = 1;
+        }
+        allow_debug = "SET !SINGLESTEP YES\nSET !EXTRACT_TEST_POPUP YES\n";
+        return allow_debug;
+    }
+}
+
 var jsLF = "\n";
 
 //Proxy Support
 var macro;
-macro = "CODE:";
+macro = "CODE:" + onDebug();
 macro += "CLEAR" + jsLF;
 macro += "SET !DATASOURCE proxy.txt" + jsLF;
 macro += "SET !DATASOURCE_COLUMNS 2" + jsLF;
@@ -56,7 +78,7 @@ var eN = getFileLines(imdata + '\\EmailList.txt');
 
 
 var macro;
-macro = "CODE:";
+macro = "CODE:" + onDebug();
 macro += "CLEAR" + jsLF;
 macro += "TAB T=1" + jsLF;
 macro += "TAB CLOSEALLOTHERS" + jsLF;
@@ -75,7 +97,7 @@ macro += "SET !TIMEOUT_STEP 0" + jsLF;
 macro += "TAG POS=1 TYPE=H2 ATTR=* EXTRACT=TXT" + jsLF;
 
 var check;
-check = "CODE:";
+check = "CODE:" + onDebug();
 check += "SET !TIMEOUT_PAGE 15" + jsLF;
 check += "SET !DATASOURCE EmailList.txt" + jsLF;
 check += "SET !DATASOURCE_COLUMNS 1" + jsLF;
@@ -91,7 +113,7 @@ check += "WAIT SECONDS=3" + jsLF;
 check += "TAG POS=3 TYPE=DIV ATTR=CLASS:row EXTRACT=TXT" + jsLF;
 
 var saveas;
-saveas = "CODE:";
+saveas = "CODE:" + onDebug();
 saveas += "TAB T=1" + jsLF;
 saveas += "SET !DATASOURCE EmailList.txt" + jsLF;
 saveas += "SET !DATASOURCE_COLUMNS 1" + jsLF;

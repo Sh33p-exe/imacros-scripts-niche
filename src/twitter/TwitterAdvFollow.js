@@ -22,6 +22,22 @@ let iMacros = window.QueryInterface(imns.Ci.nsIInterfaceRequestor)
 let filename = iMacros._currentMacro.name; //Get Script Name
 let folder_mydata = (iMacros._currentMacro.path).replace(filename, '').replace(/\\Macros\\/g, '\\Datasources\\'); //Get Datasources Folder Path
 ////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @description This function will activate built-in iMacros Debug for every single step with more advanced algorithm to track changes
+ * Also it adds a support for iMacros Developer Tools, which makes the script debug easy with a little knowledge in HTML Basics and Developer Tools.
+ */
+function onDebug() {
+  if (EASY_DEBUG_MODE) {
+      window.console.log(`%ciMacros DEBUG MODE IS ACTIVATED`, 'background: red; color: white');
+      let first_time = 0;
+      if (!first_time) {
+          iimPlayCode("SET !USERAGENT " + USER_AGENT_STRING + "\n");
+          first_time = 1;
+      }
+      allow_debug = "SET !SINGLESTEP YES\nSET !EXTRACT_TEST_POPUP YES\n";
+      return allow_debug;
+  }
+}
 // Return total lines of any file path.
 function getFileLines(file_path) {
   const CRLF = "\r\n";
@@ -56,7 +72,7 @@ let file_profiles = folder_mydata + "TwitterUsernames.txt"; //Datasource for twi
 let sum_login = getFileLines(file_login); //Total accounts
 let sum_profiles = getFileLines(file_profiles); //Total profiles for followers
 
-let accounts = "CODE:";
+let accounts = "CODE:" + onDebug();
 accounts += "SET !ERRORIGNORE YES" + jsLF; //Ignore errors
 accounts += "SET !DATASOURCE_DELIMITER :" + jsLF; //Split Datasource file by comma
 accounts += "SET !DATASOURCE " + file_login + jsLF; //Get data source file
@@ -66,14 +82,14 @@ accounts += "SET !EXTRACT {{!COL1}}" + jsLF; //Username
 accounts += "ADD !EXTRACT {{!COL2}}" + jsLF; //Password
 accounts += "ADD !EXTRACT {{!COL3}}" + jsLF; //Email
 
-let profiles = "CODE:";
+let profiles = "CODE:" + onDebug();
 profiles += "SET !ERRORIGNORE YES" + jsLF; //Ignore errors
 profiles += "SET !DATASOURCE " + file_profiles + jsLF; //Datasource path
 profiles += "SET !DATASOURCE_LINE {{loop}}" + jsLF; //Current loop session
 profiles += "SET !EXTRACT {{!COL1}}" + jsLF; //Current Extract
 
 
-let login = "CODE:";
+let login = "CODE:" + onDebug();
 login += "CLEAR" + jsLF; //Clear all cookies
 login += "SET !ERRORIGNORE YES" + jsLF; //Ignore Errors
 login += "SET !TIMEOUT_STEP 3" + jsLF; //Step timeout in seconds
@@ -89,7 +105,7 @@ login += "TAG POS=1 TYPE=BUTTON FORM=ACTION:/sessions ATTR=TXT:Log<SP>in" + jsLF
 login += "TAG POS=3 TYPE=DIV ATTR=TXT:Log<SP>in" + jsLF; //Hit login button 3
 login += "SET !EXTRACT {{!URLCURRENT}}" + jsLF; //Extract current page url
 
-let active = "CODE:";
+let active = "CODE:" + onDebug();
 active += "SET !ERRORIGNORE YES" + jsLF; //Ignore errors
 active += "SET !TIMEOUT_STEP 1" + jsLF; //Step timeout for every command
 active += "TAG POS=1 TYPE=INPUT:TEXT FORM=ID:login-challenge-form ATTR=ID:challenge_response CONTENT={{email}}" + jsLF; //Input email address in the field
@@ -97,12 +113,12 @@ active += "TAG POS=1 TYPE=INPUT:SUBMIT FORM=ID:login-challenge-form ATTR=ID:emai
 active += "SET !EXTRACT {{!URLCURRENT}}" + jsLF; //Current Url
 active += "WAIT SECONDS=1" + jsLF; //One moment later!
 
-let gofollow = "CODE:";
+let gofollow = "CODE:" + onDebug();
 gofollow += "FILTER TYPE=IMAGES STATUS=ON" + jsLF; //Remove images from the page
 gofollow += "URL GOTO=https://twitter.com/{{username}}/followers" + jsLF; //Load user followers
 
 let zoom;
-zoom = "CODE:";
+zoom = "CODE:" + onDebug();
 zoom += "SET !ERRORIGNORE YES" + jsLF;
 zoom += "EVENT TYPE=KEYPRESS SELECTOR=\"HTML>BODY\" CHAR=\"0\" MODIFIERS=ctrl" + jsLF; //Reset zoom
 zoom += "EVENT TYPE=KEYPRESS SELECTOR=\"HTML>BODY\" CHAR=\"-\" MODIFIERS=ctrl" + jsLF; //Zoom Out page
