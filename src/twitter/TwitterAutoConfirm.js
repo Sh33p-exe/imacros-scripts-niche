@@ -1,3 +1,25 @@
+////////////////////////////////////////////////////////////////////////////////////////
+// DEBUG: For Developers only
+const EASY_DEBUG_MODE = false; //To activate built-in Debug mode for testing in iMacros Add-on and support Firefox Developer Tools for source-code changes.
+const USER_AGENT_STRING = ""; //Please not that change useragent may change the whole website interface
+////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @description This function will activate built-in iMacros Debug for every single step with more advanced algorithm to track changes
+ * Also it adds a support for iMacros Developer Tools, which makes the script debug easy with a little knowledge in HTML Basics and Developer Tools.
+ */
+function onDebug() {
+    if (EASY_DEBUG_MODE) {
+        window.console.log(`%ciMacros DEBUG MODE IS ACTIVATED`, 'background: red; color: white');
+        let first_time = 0;
+        if (!first_time) {
+            iimPlayCode("SET !USERAGENT " + USER_AGENT_STRING + "\n");
+            first_time = 1;
+        }
+        activate_debugg = "SET !SINGLESTEP YES\nSET !EXTRACT_TEST_POPUP YES";
+        return activate_debugg;
+
+    }
+}
 var jsLF = "\n";
 var i, retcode, errtext;
 var count = 0;
@@ -26,7 +48,7 @@ function getFileLines(file_path) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
-var login = "CODE:";
+var login = "CODE:" + onDebug();
 login += "SET !ERRORIGNORE YES" + jsLF;
 login += "SET !TIMEOUT_STEP 1" + jsLF;
 login += "SET !DATASOURCE_DELIMITER :" + jsLF;
@@ -43,13 +65,13 @@ login += "TAG POS=1 TYPE=INPUT:SUBMIT FORM=ID:login-challenge-form ATTR=ID:email
 login += "SET !EXTRACT {{!COL1}}" + jsLF;
 login += "ADD !EXTRACT {{!COL2}}" + jsLF;
 
-var tempmail = "CODE:";
+var tempmail = "CODE:" + onDebug();
 tempmail += "SET !ERRORIGNORE YES" + jsLF;
 tempmail += "URL GOTO=https://www.moakt.com/ar/mail" + jsLF;
 tempmail += "TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:/ar/mail ATTR=NAME:random" + jsLF;
 tempmail += "TAG POS=1 TYPE=DIV ATTR=ID:email-address EXTRACT=TXT" + jsLF;
 
-var confirm = "CODE:";
+var confirm = "CODE:" + onDebug();
 confirm += "SET !ERRORIGNORE YES" + jsLF;
 confirm += "URL GOTO=https://www.moakt.com/ar/mail" + jsLF;
 confirm += "WAIT SECONDS=5" + jsLF;
@@ -63,7 +85,7 @@ confirm += "SET !TIMEOUT_PAGE 4" + jsLF;
 confirm += "TAG POS=1 TYPE=A ATTR=HREF:https://twitter.com/i/redirect?url=*" + jsLF;
 confirm += "TAB CLOSEALLOTHERS" + jsLF;
 
-var repmail = "CODE:";
+var repmail = "CODE:" + onDebug();
 repmail += "SET !ERRORIGNORE YES" + jsLF;
 repmail += "TAG POS=1 TYPE=A ATTR=TXT:mode_edit<SP>*" + jsLF;
 repmail += "WAIT SECONDS=5" + jsLF;

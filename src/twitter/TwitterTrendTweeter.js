@@ -1,4 +1,26 @@
-﻿var jsLF = "\n";
+﻿////////////////////////////////////////////////////////////////////////////////////////
+// DEBUG: For Developers only
+const EASY_DEBUG_MODE = false; //To activate built-in Debug mode for testing in iMacros Add-on and support Firefox Developer Tools for source-code changes.
+const USER_AGENT_STRING = ""; //Please not that change useragent may change the whole website interface
+////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @description This function will activate built-in iMacros Debug for every single step with more advanced algorithm to track changes
+ * Also it adds a support for iMacros Developer Tools, which makes the script debug easy with a little knowledge in HTML Basics and Developer Tools.
+ */
+function onDebug() {
+    if (EASY_DEBUG_MODE) {
+        window.console.log(`%ciMacros DEBUG MODE IS ACTIVATED`, 'background: red; color: white');
+        let first_time = 0;
+        if (!first_time) {
+            iimPlayCode("SET !USERAGENT " + USER_AGENT_STRING + "\n");
+            first_time = 1;
+        }
+        activate_debugg = "SET !SINGLESTEP YES\nSET !EXTRACT_TEST_POPUP YES";
+        return activate_debugg;
+
+    }
+}
+var jsLF = "\n";
 var i, retcode, errtext;
 var count = 0;
 var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
@@ -32,7 +54,7 @@ var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1
 var window = windowMediator.getMostRecentWindow("navigator:browser");
 ////////////////////////////////////////////////////////////////////////////////////////
 for (var index = 1; index < lineCount(datapath + "TwitterAccounts.csv"); index++) {
-    var macro = "CODE:";
+    var macro = "CODE:" + onDebug();
     macro += "SET !ERRORIGNORE YES" + jsLF;
     macro += "TAB T=1" + jsLF;
     macro += "CLEAR" + jsLF;

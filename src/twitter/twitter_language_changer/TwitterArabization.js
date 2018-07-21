@@ -1,4 +1,26 @@
-﻿//A variable being used as memory to remember the next loop session by using new lines between every command.
+﻿////////////////////////////////////////////////////////////////////////////////////////
+// DEBUG: For Developers only
+const EASY_DEBUG_MODE = false; //To activate built-in Debug mode for testing in iMacros Add-on and support Firefox Developer Tools for source-code changes.
+const USER_AGENT_STRING = ""; //Please not that change useragent may change the whole website interface
+////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @description This function will activate built-in iMacros Debug for every single step with more advanced algorithm to track changes
+ * Also it adds a support for iMacros Developer Tools, which makes the script debug easy with a little knowledge in HTML Basics and Developer Tools.
+ */
+function onDebug() {
+    if (EASY_DEBUG_MODE) {
+        window.console.log(`%ciMacros DEBUG MODE IS ACTIVATED`, 'background: red; color: white');
+        let first_time = 0;
+        if (!first_time) {
+            iimPlayCode("SET !USERAGENT " + USER_AGENT_STRING + "\n");
+            first_time = 1;
+        }
+        activate_debugg = "SET !SINGLESTEP YES\nSET !EXTRACT_TEST_POPUP YES";
+        return activate_debugg;
+
+    }
+}
+//A variable being used as memory to remember the next loop session by using new lines between every command.
 const jsLF = "\n";
 //Loop, error handling variables
 var i, retcode, errtext;
@@ -62,7 +84,7 @@ window.document.querySelectorAll('.run')[0].addEventListener("click", function (
 
 ///////////////////////////////////////////////////////////////////////////
 //Format CSV File Data
-let accounts = "CODE:";
+let accounts = "CODE:" + onDebug();
 accounts += "SET !ERRORIGNORE YES" + jsLF; //Ignore errors
 accounts += "SET !DATASOURCE_DELIMITER :" + jsLF; //Split csv file using :
 accounts += "SET !DATASOURCE {{file}}" + jsLF; //File path
@@ -72,7 +94,7 @@ accounts += "SET !EXTRACT {{!COL1}}" + jsLF; //Username
 accounts += "ADD !EXTRACT {{!COL2}}" + jsLF; //Password
 // accounts += "ADD !EXTRACT {{!COL3}}" + jsLF; //For email (optional)
 
-let login = "CODE:";
+let login = "CODE:" + onDebug();
 login += "CLEAR" + jsLF; //Clear all cookies
 login += "SET !ERRORIGNORE YES" + jsLF; //Ignore Errors
 login += "SET !TIMEOUT_STEP 3" + jsLF; //Step timeout in seconds
@@ -122,7 +144,7 @@ function playBot() {
             //Go to user profile
             iimPlayCode("URL GOTO=https://twitter.com/" + user + "?lang=en&edit=true");
             //Update user profile
-            let profile = "CODE:";
+            let profile = "CODE:" + onDebug();
             profile += "WAIT SECONDS=1" + jsLF; //1 Seconds later
             profile += "SET !TIMEOUT_STEP 3" + jsLF; //Timeout for every step
             profile += "SET !ERRORIGNORE YES" + jsLF; //Ignore errors in the following steps
@@ -197,7 +219,7 @@ function talki() {
  * @returns false if the upload has any errors
  */
 function PicUp() {
-    let photo = "CODE:";
+    let photo = "CODE:" + onDebug();
     photo += "SET !ERRORIGNORE YES" + jsLF; //Ignore errors
     photo += "FILTER TYPE=IMAGES STATUS=OFF" + jsLF; //Upload Images
     photo += "URL GOTO=https://picsum.photos/" + getRandomInt(600, 800) + "/500" + jsLF; //Random Image

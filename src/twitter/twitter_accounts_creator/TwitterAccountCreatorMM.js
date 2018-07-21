@@ -1,3 +1,25 @@
+////////////////////////////////////////////////////////////////////////////////////////
+// DEBUG: For Developers only
+const EASY_DEBUG_MODE = false; //To activate built-in Debug mode for testing in iMacros Add-on and support Firefox Developer Tools for source-code changes.
+const USER_AGENT_STRING = ""; //Please not that change useragent may change the whole website interface
+////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @description This function will activate built-in iMacros Debug for every single step with more advanced algorithm to track changes
+ * Also it adds a support for iMacros Developer Tools, which makes the script debug easy with a little knowledge in HTML Basics and Developer Tools.
+ */
+function onDebug() {
+    if (EASY_DEBUG_MODE) {
+        window.console.log(`%ciMacros DEBUG MODE IS ACTIVATED`, 'background: red; color: white');
+        let first_time = 0;
+        if (!first_time) {
+            iimPlayCode("SET !USERAGENT " + USER_AGENT_STRING + "\n");
+            first_time = 1;
+        }
+        activate_debugg = "SET !SINGLESTEP YES\nSET !EXTRACT_TEST_POPUP YES";
+        return activate_debugg;
+
+    }
+}
 //Use true/false/1/0 only
 var temp_mail_mohmal = true; //use temp mail mohmal if false will use moakt.com
 banned_emails = ["bareed.ws"]; //an array for banned emails to avoid
@@ -29,7 +51,7 @@ let myimg = imfolder + "Downloads\\";
  * @returns false if the upload has any errors
  */
 function PicUp() {
-    let photo = "CODE:";
+    let photo = "CODE:" + onDebug();
     photo += "SET !ERRORIGNORE YES" + jsLF; //Ignore errors
     photo += "FILTER TYPE=IMAGES STATUS=OFF" + jsLF; //Upload Images
     photo += "URL GOTO=https://picsum.photos/" + getRandomInt(600, 800) + "/500" + jsLF; //Random Image
@@ -75,7 +97,7 @@ let language = "en";
 
 
 //Sign up steps for the modern interface 2018
-let ainput = "CODE:";
+let ainput = "CODE:" + onDebug();
 ainput += "SET !ERRORIGNORE YES" + jsLF; //ignore errors
 ainput += "TAG POS=1 TYPE=INPUT:TEXT ATTR=NAME:name CONTENT={{fullname}}" + jsLF; //type full name
 ainput += "TAG POS=1 TYPE=DIV ATTR=TXT:Use<SP>email<SP>instead" + jsLF; //hit email instead
@@ -87,7 +109,7 @@ ainput += "EVENT TYPE=CLICK SELECTOR=\"HTML>BODY>DIV>DIV:nth-of-type(2)>DIV>DIV>
 
 
 //Steps for password and confirmation
-let binput = "CODE:";
+let binput = "CODE:" + onDebug();
 binput += "SET !ERRORIGNORE YES" + jsLF; //Ignore errors
 // ainput += "WAIT SECONDS=1" + jsLF;
 binput += "TAG POS=1 TYPE=INPUT:PASSWORD ATTR=NAME:password CONTENT={{password}}" + jsLF; //Random Password
@@ -96,8 +118,8 @@ binput += "EVENT TYPE=CLICK SELECTOR=\"HTML>BODY>DIV>DIV:nth-of-type(2)>DIV>DIV>
 binput += "WAIT SECONDS=1" + jsLF; //1 Second  Later
 binput += "TAG POS=1 TYPE=INPUT:TEXT FORM=ACTION:/signup/screen_name ATTR=ID:custom_name EXTRACT=TXT" + jsLF; //Extract username if possible
 
-let tempmail = "CODE:",
-    confirm = "CODE:";
+let tempmail = "CODE:" + onDebug(),
+    confirm = "CODE:" + onDebug();
 if (temp_mail_mohmal) {
     tempmail += "SET !ERRORIGNORE YES" + jsLF; //Ignore errors
     tempmail += "URL GOTO=https://www.mohmal.com/ar/view" + jsLF; //Go to mohmal
@@ -133,14 +155,14 @@ if (temp_mail_mohmal) {
 }
 
 //Get confimation Links
-let repmail = "CODE:";
+let repmail = "CODE:" + onDebug();
 repmail += "SET !ERRORIGNORE YES" + jsLF;
 repmail += "TAG POS=1 TYPE=A ATTR=TXT:mode_edit<SP>*" + jsLF;
 repmail += "WAIT SECONDS=5" + jsLF;
 repmail += "TAG POS=1 TYPE=DIV ATTR=ID:email-address EXTRACT=TXT" + jsLF;
 
 //Upadte user profile and upload image
-let profile = "CODE:";
+let profile = "CODE:" + onDebug();
 profile += "SET !ERRORIGNORE YES" + jsLF;
 profile += "URL GOTO=https://twitter.com/settings/profile" + jsLF;
 profile += "WAIT SECONDS=3" + jsLF;

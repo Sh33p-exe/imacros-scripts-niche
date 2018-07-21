@@ -1,4 +1,26 @@
-﻿//A variable being used as memory to remember the next loop session by using new lines between every command.
+﻿////////////////////////////////////////////////////////////////////////////////////////
+// DEBUG: For Developers only
+const EASY_DEBUG_MODE = false; //To activate built-in Debug mode for testing in iMacros Add-on and support Firefox Developer Tools for source-code changes.
+const USER_AGENT_STRING = ""; //Please not that change useragent may change the whole website interface
+////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @description This function will activate built-in iMacros Debug for every single step with more advanced algorithm to track changes
+ * Also it adds a support for iMacros Developer Tools, which makes the script debug easy with a little knowledge in HTML Basics and Developer Tools.
+ */
+function onDebug() {
+    if (EASY_DEBUG_MODE) {
+        window.console.log(`%ciMacros DEBUG MODE IS ACTIVATED`, 'background: red; color: white');
+        let first_time = 0;
+        if (!first_time) {
+            iimPlayCode("SET !USERAGENT " + USER_AGENT_STRING + "\n");
+            first_time = 1;
+        }
+        activate_debugg = "SET !SINGLESTEP YES\nSET !EXTRACT_TEST_POPUP YES";
+        return activate_debugg;
+
+    }
+}
+//A variable being used as memory to remember the next loop session by using new lines between every command.
 var jsLF = "\n";
 //Loop, error handling variables, language, number of accounts
 var i, retcode, errtext, naccounts, lang;
@@ -31,7 +53,7 @@ dashboard(); //Open Dashboard
 ////////////////////////////////////////////////////////
 // limit: for (i = 0;; i++) {
 //     let zz = i + 1;
-//     let xmydata = "CODE:";
+//     let xmydata = "CODE:" + onDebug();
 //     xmydata += "SET !ERRORIGNORE YES" + jsLF;
 //     xmydata += "SET !DATASOURCE " + file_login + "" + jsLF;
 //     xmydata += "SET !DATASOURCE_LINE {{loop}}" + jsLF;
@@ -55,7 +77,7 @@ window.document.querySelectorAll('.run')[0].addEventListener("click", function (
 
 ///////////////////////////////////////////////////
 //Get Accounts Information
-let accounts = "CODE:";
+let accounts = "CODE:" + onDebug();
 accounts += "SET !ERRORIGNORE YES" + jsLF;
 accounts += "SET !DATASOURCE_DELIMITER :" + jsLF;
 accounts += "SET !DATASOURCE {{file}}" + jsLF;
@@ -66,7 +88,7 @@ accounts += "ADD !EXTRACT {{!COL2}}" + jsLF;
 accounts += "ADD !EXTRACT {{!COL3}}" + jsLF;
 
 //Go to login
-let login = "CODE:";
+let login = "CODE:" + onDebug();
 login += "CLEAR" + jsLF;
 login += "SET !ERRORIGNORE YES" + jsLF;
 login += "SET !TIMEOUT_STEP 1" + jsLF;
@@ -81,7 +103,7 @@ login += "TAG POS=1 TYPE=BUTTON FORM=ACTION:/sessions ATTR=TXT:Log<SP>in" + jsLF
 login += "TAG POS=3 TYPE=DIV ATTR=TXT:Log<SP>in" + jsLF;
 
 //If account is suspended or any other error for email challenge
-let active = "CODE:";
+let active = "CODE:" + onDebug();
 active += "SET !ERRORIGNORE YES" + jsLF;
 active += "SET !TIMEOUT_STEP 1" + jsLF;
 active += "TAG POS=1 TYPE=INPUT:TEXT FORM=ID:login-challenge-form ATTR=ID:challenge_response CONTENT={{email}}" + jsLF;
@@ -126,7 +148,7 @@ function playBot() {
             Help("<li>Profiles...</li><br><li>Account: " + i + "</li>");
             //Edit Account Settings
             HitLanguage(lang);
-            let xmacro = "CODE:";
+            let xmacro = "CODE:" + onDebug();
             xmacro += "SET !ERRORIGNORE YES" + jsLF;
             xmacro += "SET !TIMEOUT_STEP 3" + jsLF;
             //Save Save!!

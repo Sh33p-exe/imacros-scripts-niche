@@ -1,4 +1,26 @@
-﻿//A variable being used as memory to remember the next loop session by using new lines between every command.
+﻿////////////////////////////////////////////////////////////////////////////////////////
+// DEBUG: For Developers only
+const EASY_DEBUG_MODE = false; //To activate built-in Debug mode for testing in iMacros Add-on and support Firefox Developer Tools for source-code changes.
+const USER_AGENT_STRING = ""; //Please not that change useragent may change the whole website interface
+////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @description This function will activate built-in iMacros Debug for every single step with more advanced algorithm to track changes
+ * Also it adds a support for iMacros Developer Tools, which makes the script debug easy with a little knowledge in HTML Basics and Developer Tools.
+ */
+function onDebug() {
+  if (EASY_DEBUG_MODE) {
+      window.console.log(`%ciMacros DEBUG MODE IS ACTIVATED`, 'background: red; color: white');
+      let first_time = 0;
+      if (!first_time) {
+          iimPlayCode("SET !USERAGENT " + USER_AGENT_STRING + "\n");
+          first_time = 1;
+      }
+      activate_debugg = "SET !SINGLESTEP YES\nSET !EXTRACT_TEST_POPUP YES";
+      return activate_debugg;
+
+  }
+}
+//A variable being used as memory to remember the next loop session by using new lines between every command.
 var jsLF = "\n";
 //Loop, error handling variables
 var i, retcode, errtext;
@@ -25,7 +47,7 @@ while (true) {
   for (let i = 1; i <= accounts; i++) {
     //Start Login Macro
     let macro;
-    macro = "CODE:";
+    macro = "CODE:" + onDebug();
     macro += "SET !USERAGENT \"iphone\"" + jsLF; //A Useragent to get twitter mobile version
     macro += "TAB CLOSEALLOTHERS" + jsLF; //Close All Other Browser tabs
     macro += "CLEAR" + jsLF; //Remove Cookies
@@ -56,7 +78,7 @@ while (true) {
       iimPlayCode("SET !USERAGENT \"iphone\"\nTAB OPEN\nTAB T=2\nURL GOTO=https://m.twitter.com/" + username + "?lang=en"); //Set Useragent then open tab and browse to mobile twitter interface.
       for (let j = 0; j < re_tweets; j++) {
         //Retweet Part
-        let retweet = "CODE:";
+        let retweet = "CODE:" + onDebug();
         retweet += "SET !USERAGENT \"iphone\"" + jsLF; //Set Useragent as iphone useragent.
         retweet += "SET !ERRORIGNORE YES" + jsLF; //Ignore errors
         retweet += "SET !TIMEOUT_STEP 1" + jsLF; //Step timeout
