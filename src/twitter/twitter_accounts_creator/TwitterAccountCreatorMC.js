@@ -140,7 +140,6 @@ if (temp_mail_mohmal) {
     confirm += "TAB CLOSEALLOTHERS" + jsLF; //Close all other tabs
 }
 
-
 let repmail = "CODE:" + onDebug();
 repmail += "SET !ERRORIGNORE YES" + jsLF;
 repmail += "TAG POS=1 TYPE=A ATTR=TXT:mode_edit<SP>*" + jsLF;
