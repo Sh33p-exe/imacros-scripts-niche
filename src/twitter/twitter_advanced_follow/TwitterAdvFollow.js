@@ -33,7 +33,7 @@ let i, retcode, errtext, count = 0;
 //Enumerating all windows of a given type and getting the most recent / any window of a given type.
 const windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
   .getService(Components.interfaces.nsIWindowMediator);
-let window = windowMediator.getMostRecentWindow("navigator:browser");
+var window = windowMediator.getMostRecentWindow("navigator:browser");
 ////////////////////////////////////////////////////////////////////////////////////////
 //A method to access iMacros interface
 let iMacros = window.QueryInterface(imns.Ci.nsIInterfaceRequestor)
@@ -60,7 +60,11 @@ function onDebug() {
       return allow_debug;
   }
 }
-// Return total lines of any file path.
+/**
+ * 
+ * @param {String} input datasource file path
+ * @returns total file lines
+ */
 function getFileLines(file_path) {
   const CRLF = "\r\n";
   const LF = "\n";
@@ -151,8 +155,8 @@ prime: {
     //prompt for random follow between 2 numbers
     let input = prompt("Follow between two numbers:", "100,1000");
     let intoArray = input.split(','); //Split by comma
-    var min = intoArray[0]; //Start number
-    var max = intoArray[1]; //End number
+    let min = intoArray[0]; //Start number
+    let max = intoArray[1]; //End number
   } catch (e) {
     break prime;
   }

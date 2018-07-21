@@ -20,22 +20,23 @@ function onDebug() {
 
     }
 }
+//Variable for iMacros built-in memory to remember the next loop session by using new lines between every command for iMacros.
 var jsLF = "\n";
-var i, retcode, errtext;
-var count = 0;
-var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+//Loop, error handling variables
+let i, retcode, errtext, count = 0;
+//Enumerating all windows of a given type and getting the most recent / any window of a given type.
+const windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
     .getService(Components.interfaces.nsIWindowMediator);
 var window = windowMediator.getMostRecentWindow("navigator:browser");
 ////////////////////////////////////////////////////////////////////////////////////////
-
 if (window.document.URL.indexOf("/following" >= 0)) {
     iimPlayCode("EVENTS TYPE=KEYPRESS SELECTOR=\"HTML>BODY\" CHARS=- MODIFIERS=CTRL");
     while (true) {
-        var profile = window.document.querySelectorAll('.ProfileCard-screenname');
+        let profile = window.document.querySelectorAll('.ProfileCard-screenname');
 
         if (count < profile.length) {
-            var profile = window.document.querySelectorAll('.ProfileCard-screenname');
-            var stat = window.document.querySelectorAll('.ProfileCard-screenname')[count].innerHTML;
+            let profile = window.document.querySelectorAll('.ProfileCard-screenname');
+            let stat = window.document.querySelectorAll('.ProfileCard-screenname')[count].innerHTML;
             if (stat.indexOf('FollowStatus') === -1) {
                 window.document.querySelectorAll('.EdgeButton.EdgeButton--danger.EdgeButton--small.button-text.unfollow-text')[eval(count + 3)].click();
                 window.document.querySelectorAll('.EdgeButton.EdgeButton--danger.EdgeButton--small.button-text.unfollow-text')[eval(count + 3)].scrollIntoView();

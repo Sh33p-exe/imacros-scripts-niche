@@ -23,8 +23,8 @@ function onDebug() {
 //A variable being used as memory to remember the next loop session by using new lines between every command.
 const jsLF = "\n";
 //Loop, error handling variables
-var i, retcode, errtext;
-var add_img, img_path, total_accounts;
+let i, retcode, errtext;
+let add_img, img_path, total_accounts;
 //Enumerating all windows of a given type and getting the most recent / any window of a given type.
 const windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
 .getService(Components.interfaces.nsIWindowMediator);
@@ -194,25 +194,8 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-
 function whitePage() {
     iimPlayCode("TAB CLOSEALLOTHERS\nCLEAR\nURL GOTO=https://twitter.com");
-}
-
-/**
- * @returns day greetings by hours
- */
-function talki() {
-    let greeting;
-    let time = new Date().getHours();
-    if (time < 10)
-        greeting = "Good morning"; //if current time less than 10 hours
-    else if (time < 20)
-        greeting = "Nice day!"; //else if time less than 20 hours 
-    else
-        greeting = "Good evening"; //else say good evening
-
-    return greeting;
 }
 
 /**
@@ -236,7 +219,7 @@ function PicUp() {
  * @returns DOM right side bar
  */
 function Help(message) {
-    return window.document.body.innerHTML += '<div class="iRightSideBar" style="font-family:Segoe UI,Tahoma,Arial,sans-serif;border-radius: 1em;text-align:right;font-size:16px;;direction: ltr; position: fixed; top: 0px; right: 0; margin: 1ex; padding: 1em; background: orange; width: 15%; hieght: 100px; z-index: 6666; opacity: 0.9;"> <p style="font-size:14px;">' + talki() + '</p> <ul style="margin:0ex;">' + message + '</ul></div>';
+    return window.document.body.innerHTML += '<div class="iRightSideBar" style="font-family:Segoe UI,Tahoma,Arial,sans-serif;border-radius: 1em;text-align:right;font-size:16px;;direction: ltr; position: fixed; top: 0px; right: 0; margin: 1ex; padding: 1em; background: orange; width: 15%; hieght: 100px; z-index: 6666; opacity: 0.9;"> <p style="font-size:14px;"></p> <ul style="margin:0ex;">' + message + '</ul></div>';
 }
 
 /**

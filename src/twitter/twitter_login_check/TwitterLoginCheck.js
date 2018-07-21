@@ -21,8 +21,8 @@ function onDebug() {
   }
 }
 var jsLF = "\n";
-for (var i = 1;; i++) {
-  var macro = "CODE:" + onDebug();
+for (let i = 1;; i++) {
+  let macro = "CODE:" + onDebug();
   macro += "CLEAR" + jsLF;
   macro += "SET !ERRORIGNORE YES" + jsLF;
   macro += "SET !USERAGENT \"mobile\"" + jsLF;
@@ -43,12 +43,12 @@ for (var i = 1;; i++) {
   macro += "SET !EXTRACT {{!URLCURRENT}}" + jsLF;
   iimSet("loop", i);
   iimPlay(macro);
-  var result = iimGetLastExtract();
-  var area = window.document.querySelectorAll('#challenge_response').length;
+  let result = iimGetLastExtract();
+  let area = window.document.querySelectorAll('#challenge_response').length;
   // window.console.log(result);
   if (result.indexOf("/account/access") >= 0 && area == 0) {
     iimDisplay("The Account is closed!");
-    var macro = "CODE:" + onDebug();
+    let macro = "CODE:" + onDebug();
     macro += "SET !ERRORIGNORE YES" + jsLF;
     macro += "SET !EXTRACT_TEST_POPUP NO" + jsLF;
     macro += "FILTER TYPE=IMAGES STATUS=ON" + jsLF;
@@ -61,7 +61,7 @@ for (var i = 1;; i++) {
     iimSet("loop", i);
     iimPlay(macro);
   } else {
-    var macro = "CODE:" + onDebug();
+    let macro = "CODE:" + onDebug();
     macro += "SET !ERRORIGNORE YES" + jsLF;
     macro += "SET !TIMEOUT_STEP 1" + jsLF;
     macro += "SET !EXTRACT_TEST_POPUP NO" + jsLF;

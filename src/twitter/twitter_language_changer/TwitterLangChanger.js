@@ -23,7 +23,7 @@ function onDebug() {
 //A variable being used as memory to remember the next loop session by using new lines between every command.
 var jsLF = "\n";
 //Loop, error handling variables, language, number of accounts
-var i, retcode, errtext, naccounts, lang;
+let i, retcode, errtext, naccounts, lang;
 // let arraccounts = [];
 let nlang = 0;
 //Enumerating all windows of a given type and getting the most recent / any window of a given type. (just commented because of dashboard)
@@ -35,40 +35,20 @@ const iMacros = window.QueryInterface(imns.Ci.nsIInterfaceRequestor)
     .QueryInterface(imns.Ci.nsIDocShellTreeItem).rootTreeItem
     .QueryInterface(imns.Ci.nsIInterfaceRequestor)
     .getInterface(imns.Ci.nsIDOMWindow).iMacros;
-var filename = iMacros._currentMacro.name;
-var datapath = (iMacros._currentMacro.path).replace(filename, '').replace(/\\Macros\\/g, '\\Datasources\\');
+let filename = iMacros._currentMacro.name;
+let datapath = (iMacros._currentMacro.path).replace(filename, '').replace(/\\Macros\\/g, '\\Datasources\\');
 //////////////////////////////////////////////////////////
 let _cssdash = 'font-family: Tahoma,sans-serif;line-height: 18px;font-size: 16px;color: #8899a6;width: 600px;margin: 5em auto;padding: 50px;background-color: #fff;border-radius: 1em;';
 let _cssinput = 'display: inline-block;padding: 4px;margin: 0;outline: 0;background-color: #fff;border: 1px solid #e1e8ed;border-radius: 3px;';
 let _cssbutton = 'font-size: 14px;font-weight: bold;color: white;padding: 9px 18px;border: 1px solid #3b94d9;border-radius: 3px;background-color: #50a5e6;outline: 0;display: inline-block;';
 let file_login = "TwitterAccounts.csv"; //datasource file
-let total_accounts = lineCount(datapath + file_login);
+let total_accounts = getFileLines(datapath + file_login);
 ////////////////////////////////////////////////////////
 //Open dashboard
 ////////////////////////////////////////////////////////
 whitePage(); //Go Twitter
 dashboard(); //Open Dashboard
 ////////////////////////////////////////////////////////
-//An Alternative method for iMacros 9.0.3 to count lines.
-////////////////////////////////////////////////////////
-// limit: for (i = 0;; i++) {
-//     let zz = i + 1;
-//     let xmydata = "CODE:" + onDebug();
-//     xmydata += "SET !ERRORIGNORE YES" + jsLF;
-//     xmydata += "SET !DATASOURCE " + file_login + "" + jsLF;
-//     xmydata += "SET !DATASOURCE_LINE {{loop}}" + jsLF;
-//     xmydata += "SET !EXTRACT {{!COL1}}" + jsLF;
-//     iimSet("loop", zz);
-//     iimPlay(xmydata);
-//     let xurl = iimGetLastExtract();
-//     if (arraccounts[0] === xurl) {
-//         break limit;
-//     } else {
-//         arraccounts.push(xurl);
-//         window.document.querySelectorAll(".naccounts")[0].value = arraccounts.length;
-//     }
-// }
-
 window.document.querySelectorAll('.run')[0].addEventListener("click", function () {
     lang = window.document.querySelectorAll("select")[0].value; //User input for language
     naccounts = window.document.querySelectorAll(".naccounts")[0].value; //Get User Input for Number of accounts
@@ -251,14 +231,18 @@ function goBack(message) {
     whitePage();
     window.document.querySelectorAll("body")[0].innerHTML = '<div style="' + _cssdash + '"><center><h2 style="direction:none;font-size: 98%;">' + message + '</h2><button class="run" style="' + _cssbutton + '">Go</button></center></div>';
 }
-
-function lineCount(file_path) {
+/**
+ * 
+ * @param {String} input datasource file path
+ * @returns total file lines
+ */
+function getFileLines(file_path) {
     const CRLF = "\r\n";
     const LF = "\n";
-    var lines = [];
-    var file_i = imns.FIO.openNode(file_path);
-    var text = imns.FIO.readTextFile(file_i);
-    var eol = (text.indexOf(CRLF) == -1) ? LF : CRLF;
+    let lines = [];
+    let file_i = imns.FIO.openNode(file_path);
+    let text = imns.FIO.readTextFile(file_i);
+    let eol = (text.indexOf(CRLF) == -1) ? LF : CRLF;
     lines = text.split(eol);
     eol = lines.length;
     return eol;

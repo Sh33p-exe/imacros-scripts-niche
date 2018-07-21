@@ -20,39 +20,40 @@ function onDebug() {
 
     }
 }
+//Variable for iMacros built-in memory to remember the next loop session by using new lines between every command for iMacros.
 var jsLF = "\n";
-var i, retcode, errtext;
-var count = 0;
-var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+//Loop, error handling variables
+let i, retcode, errtext, count = 0;
+//Enumerating all windows of a given type and getting the most recent / any window of a given type.
+const windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
     .getService(Components.interfaces.nsIWindowMediator);
 var window = windowMediator.getMostRecentWindow("navigator:browser");
-var iMacros = window.QueryInterface(imns.Ci.nsIInterfaceRequestor)
-    .getInterface(imns.Ci.nsIWebNavigation)
-    .QueryInterface(imns.Ci.nsIDocShellTreeItem).rootTreeItem
-    .QueryInterface(imns.Ci.nsIInterfaceRequestor)
-    .getInterface(imns.Ci.nsIDOMWindow).iMacros;
+////////////////////////////////////////////////////////////////////////////////////////
 
 //For Windows paths only!
-var filename = iMacros._currentMacro.name;
-var imfolder = (iMacros._currentMacro.path).match(/.(.*?).Macros./g);
-var imdata = imfolder + '\\Datasources\\';
-var immacros = imfolder + '\\Macros\\';
-
+let filename = iMacros._currentMacro.name;
+let imfolder = (iMacros._currentMacro.path).match(/.(.*?).Macros./g);
+let imdata = imfolder + '\\Datasources\\';
+let immacros = imfolder + '\\Macros\\';
+/**
+ * 
+ * @param {String} input datasource file path
+ * @returns total file lines
+ */
 function getFileLines(file_path) {
     const CRLF = "\r\n";
     const LF = "\n";
-    var lines = [];
-    var file_i = imns.FIO.openNode(file_path);
-    var text = imns.FIO.readTextFile(file_i);
-    var eol = (text.indexOf(CRLF) == -1) ? LF : CRLF;
+    let lines = [];
+    let file_i = imns.FIO.openNode(file_path);
+    let text = imns.FIO.readTextFile(file_i);
+    let eol = (text.indexOf(CRLF) == -1) ? LF : CRLF;
     lines = text.split(eol);
     eol = lines.length;
     return eol;
 }
-
 function Config(config_file, limit) {
     settings = [];
-    var conf = "CODE:" + onDebug();
+    let conf = "CODE:" + onDebug();
     conf += "SET !DATASOURCE_DELIMITER =" + jsLF;
     conf += "SET !DATASOURCE " + config_file + jsLF;
     conf += "SET !DATASOURCE_COLUMNS 2" + jsLF;
@@ -70,7 +71,7 @@ function Config(config_file, limit) {
     return settings;
 }
 ///////////////////////////////////////////////////////////////////////////////////////
-var login = "CODE:" + onDebug();
+let login = "CODE:" + onDebug();
 login += "SET !ERRORIGNORE YES" + jsLF;
 login += "SET !DATASOURCE_DELIMITER :" + jsLF;
 login += "SET !DATASOURCE TwitterAccountsUp.csv" + jsLF; //Data source file
@@ -87,33 +88,31 @@ login += "SET !EXTRACT {{!COL1}}" + jsLF;
 login += "ADD !EXTRACT {{!COL2}}" + jsLF;
 login += "ADD !EXTRACT {{!COL3}}" + jsLF;
 ///////////////////////////////////////////////////////////////////////////////////////
-var global = Config("TwitterUp_Location.conf", 3);
+let global = Config("TwitterUp_Location.conf", 3);
 avatar = global[0];
 cover = global[1];
 location = global[2];
 
-
-for (var index = 1; index <= getFileLines(imdata + "TwitterAccountsUp.csv"); index++) {
+for (let index = 1; index <= getFileLines(imdata + "TwitterAccountsUp.csv"); index++) {
     iimPlayCode("CLEAR");
     iimSet("loop", index);
     iimPlay(login);
-    var user = iimGetLastExtract(1);
-    var pass = iimGetLastExtract(2);
-    var email = iimGetLastExtract(3);
+    let user = iimGetLastExtract(1);
+    let pass = iimGetLastExtract(2);
+    let email = iimGetLastExtract(3);
 
     iimPlayCode('SET !ERRORIGNORE YES\nSET !TIMEOUT_STEP 2\nTAG POS=5 TYPE=DIV ATTR=TXT:Your<SP>account<SP>is<SP>suspended<SP>and<SP>is<SP>not<SP>pe* EXTRACT=TXT');
-    var result = iimGetLastExtract();
+    let result = iimGetLastExtract();
     window.console.log(result);
 
     if (result.indexOf("suspended") === -1) {
         window.console.log("Suspended: NO");
-
-        var up1 = "" + imdata + "twavatar\\" + index + ".jpg";
-        var up2 = "" + imdata + "twcover\\" + index + ".jpg";
+        let up1 = "" + imdata + "twavatar\\" + index + ".jpg";
+        let up2 = "" + imdata + "twcover\\" + index + ".jpg";
 
         iimPlayCode("URL GOTO=https://twitter.com/" + user + "?edit=true");
 
-        var macro = "CODE:" + onDebug();
+        let macro = "CODE:" + onDebug();
         macro += "SET !ERRORIGNORE YES" + jsLF;
         macro += "SET !TIMEOUT_STEP 2" + jsLF;
         if (avatar) {
@@ -135,51 +134,17 @@ for (var index = 1; index <= getFileLines(imdata + "TwitterAccountsUp.csv"); ind
         saveAs(user, pass, email);
     }
 }
-///////////////////////////////////////////////////////////////////////////////////////
-function saveAs(user, pass, email) {
+/**
+ * 
+ * @param {string} user username
+ * @param {string} pass password
+ * @param {string} email email address
+ * @param {string} status account information status
+ */
+function saveAs(user, pass, email, status) {
     iimSet("usr", user);
     iimSet("pass", pass);
     iimSet("email", email);
-    iimPlayCode("SET !DATASOURCE_DELIMITER :\nSET !EXTRACT {{usr}}\nADD !EXTRACT {{pass}}\nADD !EXTRACT {{email}}\nSAVEAS TYPE=EXTRACT FOLDER=* FILE=TwAccountsUploaded.csv");
-}
-
-function gotoRM(myurl) {
-    var part = "about:reader?url=" + myurl;
-    iimPlayCode("URL GOTO=" + part);
-}
-
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min;
-}
-
-function getRandomLen(len) {
-    len += 2;
-    return Math.random().toString().slice(2, len);
-}
-
-function isEven(n) {
-    return n % 2 === 0;
-}
-
-function isOdd(n) {
-    return Math.abs(n % 2) === 1;
-}
-
-function username(num) {
-    var text = "";
-    var possible = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz0123456789";
-    for (var i = 0; i < num; i++)
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-    return text;
-}
-
-function password(num) {
-    return Math.random().toString().slice(2, num);
-}
-
-function getRandomNum(len) {
-    len += 2;
-    return Math.random().toString().slice(2, len);
+    iimSet("stat", status);
+    iimPlayCode("SET !DATASOURCE_DELIMITER :\nSET !EXTRACT {{usr}}\nADD !EXTRACT {{pass}}\nADD !EXTRACT {{email}}\nADD !EXTRACT {{stat}}\nSAVEAS TYPE=EXTRACT FOLDER=* FILE=TwitterAccounts.csv");
 }

@@ -23,7 +23,7 @@ function onDebug() {
 //A variable being used as memory to remember the next loop session by using new lines between every command.
 var jsLF = "\n";
 //Loop, error handling variables
-var i, retcode, errtext;
+let i, retcode, errtext;
 //Enumerating all windows of a given type and getting the most recent / any window of a given type.
 const windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
   .getService(Components.interfaces.nsIWindowMediator);
@@ -38,8 +38,12 @@ let iMacros = window.QueryInterface(imns.Ci.nsIInterfaceRequestor)
 let filename = iMacros._currentMacro.name; //Get Script Name
 let imdata = (iMacros._currentMacro.path).replace(filename, '').replace(/\\Macros\\/g, '\\Datasources\\'); //Get Datasources Folder Path
 ////////////////////////////////////////////////////////////////////////////////////////
-//Count file lines by its path using imns method.
-function lineCount(file_path) {
+/**
+ * 
+ * @param {String} input datasource file path
+ * @returns total file lines
+ */
+function getFileLines(file_path) {
   const CRLF = "\r\n";
   const LF = "\n";
   let lines = [];
@@ -50,7 +54,6 @@ function lineCount(file_path) {
   eol = lines.length;
   return eol;
 }
-
 //Save Tweets Data in Downloads Folder.
 function saveAs(tweet) {
   iimSet("tweet", tweet); //define tweet variable in imacros
@@ -59,7 +62,7 @@ function saveAs(tweet) {
 ////////////////////////////////////////////////////////////////////////////////////////
 let yourdatasource = ('tweetsinmytime.csv'); //Datasource file name for tweets
 let interval = +prompt('Please enter an interval between every tweet:'); //User Prompt for Interval
-let total_tweets = lineCount(imdata + yourdatasource); //Get total tweets
+let total_tweets = getFileLines(imdata + yourdatasource); //Get total tweets
 
 //Never Stop
 main:

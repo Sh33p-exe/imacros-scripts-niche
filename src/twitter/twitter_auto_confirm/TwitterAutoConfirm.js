@@ -20,35 +20,41 @@ function onDebug() {
 
     }
 }
+//Variable for iMacros built-in memory to remember the next loop session by using new lines between every command for iMacros.
 var jsLF = "\n";
-var i, retcode, errtext;
-var count = 0;
-var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+//Loop, error handling variables
+let i, retcode, errtext, count = 0;
+//Enumerating all windows of a given type and getting the most recent / any window of a given type.
+const windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
     .getService(Components.interfaces.nsIWindowMediator);
 var window = windowMediator.getMostRecentWindow("navigator:browser");
+////////////////////////////////////////////////////////////////////////////////////////
 const iMacros = window.QueryInterface(imns.Ci.nsIInterfaceRequestor)
     .getInterface(imns.Ci.nsIWebNavigation)
     .QueryInterface(imns.Ci.nsIDocShellTreeItem).rootTreeItem
     .QueryInterface(imns.Ci.nsIInterfaceRequestor)
     .getInterface(imns.Ci.nsIDOMWindow).iMacros;
-var filename = iMacros._currentMacro.name;
-var imfolder = (iMacros._currentMacro.path).match(/.(.*?).Macros./g);
-var imdata = imfolder + '\\Datasources\\';
-
+let filename = iMacros._currentMacro.name;
+let imfolder = (iMacros._currentMacro.path).match(/.(.*?).Macros./g);
+let imdata = imfolder + '\\Datasources\\';
+/**
+ * 
+ * @param {String} input datasource file path
+ * @returns total file lines
+ */
 function getFileLines(file_path) {
     const CRLF = "\r\n";
     const LF = "\n";
-    var lines = [];
-    var file_i = imns.FIO.openNode(file_path);
-    var text = imns.FIO.readTextFile(file_i);
-    var eol = (text.indexOf(CRLF) == -1) ? LF : CRLF;
+    let lines = [];
+    let file_i = imns.FIO.openNode(file_path);
+    let text = imns.FIO.readTextFile(file_i);
+    let eol = (text.indexOf(CRLF) == -1) ? LF : CRLF;
     lines = text.split(eol);
     eol = lines.length;
     return eol;
 }
-
 ////////////////////////////////////////////////////////////////////////////////////////
-var login = "CODE:" + onDebug();
+let login = "CODE:" + onDebug();
 login += "SET !ERRORIGNORE YES" + jsLF;
 login += "SET !TIMEOUT_STEP 1" + jsLF;
 login += "SET !DATASOURCE_DELIMITER :" + jsLF;
@@ -65,13 +71,13 @@ login += "TAG POS=1 TYPE=INPUT:SUBMIT FORM=ID:login-challenge-form ATTR=ID:email
 login += "SET !EXTRACT {{!COL1}}" + jsLF;
 login += "ADD !EXTRACT {{!COL2}}" + jsLF;
 
-var tempmail = "CODE:" + onDebug();
+let tempmail = "CODE:" + onDebug();
 tempmail += "SET !ERRORIGNORE YES" + jsLF;
 tempmail += "URL GOTO=https://www.moakt.com/ar/mail" + jsLF;
 tempmail += "TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:/ar/mail ATTR=NAME:random" + jsLF;
 tempmail += "TAG POS=1 TYPE=DIV ATTR=ID:email-address EXTRACT=TXT" + jsLF;
 
-var confirm = "CODE:" + onDebug();
+let confirm = "CODE:" + onDebug();
 confirm += "SET !ERRORIGNORE YES" + jsLF;
 confirm += "URL GOTO=https://www.moakt.com/ar/mail" + jsLF;
 confirm += "WAIT SECONDS=5" + jsLF;
@@ -85,18 +91,18 @@ confirm += "SET !TIMEOUT_PAGE 4" + jsLF;
 confirm += "TAG POS=1 TYPE=A ATTR=HREF:https://twitter.com/i/redirect?url=*" + jsLF;
 confirm += "TAB CLOSEALLOTHERS" + jsLF;
 
-var repmail = "CODE:" + onDebug();
+let repmail = "CODE:" + onDebug();
 repmail += "SET !ERRORIGNORE YES" + jsLF;
 repmail += "TAG POS=1 TYPE=A ATTR=TXT:mode_edit<SP>*" + jsLF;
 repmail += "WAIT SECONDS=5" + jsLF;
 repmail += "TAG POS=1 TYPE=DIV ATTR=ID:email-address EXTRACT=TXT" + jsLF;
 
-for (var index = 1; index <= getFileLines(imdata + "TwitterAccounts.csv"); index++) {
+for (let index = 1; index <= getFileLines(imdata + "TwitterAccounts.csv"); index++) {
     iimPlayCode("TAB CLOSEALLOTHERS\nCLEAR");
     iimDisplay("Current: " + index);
     iimPlay(tempmail);
 
-    var email = iimGetLastExtract();
+    let email = iimGetLastExtract();
 
     if (email.indexOf("bareed.ws") >= 0 || email.indexOf("disbox.net") >= 0) {
         iimPlay(repmail);
@@ -106,8 +112,8 @@ for (var index = 1; index <= getFileLines(imdata + "TwitterAccounts.csv"); index
     if (email.indexOf("bareed.ws") === -1 && email.indexOf("disbox.net") === -1) {
         iimSet("loop", index);
         iimPlay(login);
-        var user = iimGetLastExtract(1);
-        var pass = iimGetLastExtract(2);
+        let user = iimGetLastExtract(1);
+        let pass = iimGetLastExtract(2);
         if (window.location.href !== "https://twitter.com/account/access") {
             iimPlayCode("SET !ERRORIGNORE YES\nURL GOTO=https://mobile.twitter.com/settings/email\nTAG POS=1 TYPE=DIV ATTR=TXT:Email");
 
@@ -125,11 +131,18 @@ for (var index = 1; index <= getFileLines(imdata + "TwitterAccounts.csv"); index
     } else
         index--;
 }
-
 ///////////////////////////////////////////////////////////////////////////////////////
-function saveAs(user, pass, email) {
+/**
+ * 
+ * @param {string} user username
+ * @param {string} pass password
+ * @param {string} email email address
+ * @param {string} status account information status
+ */
+function saveAs(user, pass, email, status) {
     iimSet("usr", user);
     iimSet("pass", pass);
     iimSet("email", email);
-    iimPlayCode("SET !DATASOURCE_DELIMITER :\nSET !EXTRACT {{usr}}\nADD !EXTRACT {{pass}}\nADD !EXTRACT {{email}}\nSAVEAS TYPE=EXTRACT FOLDER=* FILE=TwAccountsConfirmed.csv");
+    iimSet("stat", status);
+    iimPlayCode("SET !DATASOURCE_DELIMITER :\nSET !EXTRACT {{usr}}\nADD !EXTRACT {{pass}}\nADD !EXTRACT {{email}}\nADD !EXTRACT {{stat}}\nSAVEAS TYPE=EXTRACT FOLDER=* FILE=TwitterAccounts.csv");
 }

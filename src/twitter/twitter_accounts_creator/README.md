@@ -1,4 +1,6 @@
-# Twitter Accounts Creator
+# Twitter Accounts Creator Scripts
+- Twitter Account Creator Mobile Classic Interface 
+- Twitter Account Creator Mobile Modern Interface
 
 #### Preview for Modern Twitter Interface
 

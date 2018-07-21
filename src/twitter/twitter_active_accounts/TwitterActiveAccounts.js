@@ -20,39 +20,45 @@ function onDebug() {
 
     }
 }
+//Variable for iMacros built-in memory to remember the next loop session by using new lines between every command for iMacros.
 var jsLF = "\n";
-var i, retcode, errtext, index;
-var count = 0;
-var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+//Loop, error handling variables
+let i, retcode, errtext, count = 0;
+//Enumerating all windows of a given type and getting the most recent / any window of a given type.
+const windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
     .getService(Components.interfaces.nsIWindowMediator);
 var window = windowMediator.getMostRecentWindow("navigator:browser");
-var iMacros = window.QueryInterface(imns.Ci.nsIInterfaceRequestor)
+////////////////////////////////////////////////////////////////////////////////////////
+let iMacros = window.QueryInterface(imns.Ci.nsIInterfaceRequestor)
     .getInterface(imns.Ci.nsIWebNavigation)
     .QueryInterface(imns.Ci.nsIDocShellTreeItem).rootTreeItem
     .QueryInterface(imns.Ci.nsIInterfaceRequestor)
     .getInterface(imns.Ci.nsIDOMWindow).iMacros;
-
 //For Windows paths only!
-var filename = iMacros._currentMacro.name;
-var imfolder = (iMacros._currentMacro.path).match(/.(.*?).Macros./g);
-var imdata = imfolder + '\\Datasources\\';
-var immacros = imfolder + '\\Macros\\';
-
+let filename = iMacros._currentMacro.name;
+let imfolder = (iMacros._currentMacro.path).match(/.(.*?).Macros./g);
+let imdata = imfolder + '\\Datasources\\';
+let immacros = imfolder + '\\Macros\\';
+/**
+ * 
+ * @param {String} input datasource file path
+ * @returns total file lines
+ */
 function getFileLines(file_path) {
     const CRLF = "\r\n";
     const LF = "\n";
-    var lines = [];
-    var file_i = imns.FIO.openNode(file_path);
-    var text = imns.FIO.readTextFile(file_i);
-    var eol = (text.indexOf(CRLF) == -1) ? LF : CRLF;
+    let lines = [];
+    let file_i = imns.FIO.openNode(file_path);
+    let text = imns.FIO.readTextFile(file_i);
+    let eol = (text.indexOf(CRLF) == -1) ? LF : CRLF;
     lines = text.split(eol);
     eol = lines.length;
     return eol;
 }
-
-var _cssdash = 'font-family: Tahoma,sans-serif;line-height: 18px;font-size: 16px;color: #8899a6;width: 600px;margin: 5em auto;padding: 50px;background-color: #fff;border-radius: 1em;';
-var _cssinput = 'display: inline-block;padding: 4px;margin: 0;outline: 0;background-color: #fff;border: 1px solid #e1e8ed;border-radius: 3px;';
-var _cssbutton = 'font-size: 14px;font-weight: bold;color: white;padding: 9px 18px;border: 1px solid #3b94d9;border-radius: 3px;background-color: #50a5e6;outline: 0;display: inline-block;';
+//This is CSS Style Sheet for dashboard
+let _cssdash = 'font-family: Tahoma,sans-serif;line-height: 18px;font-size: 16px;color: #8899a6;width: 600px;margin: 5em auto;padding: 50px;background-color: #fff;border-radius: 1em;';
+let _cssinput = 'display: inline-block;padding: 4px;margin: 0;outline: 0;background-color: #fff;border: 1px solid #e1e8ed;border-radius: 3px;';
+let _cssbutton = 'font-size: 14px;font-weight: bold;color: white;padding: 9px 18px;border: 1px solid #3b94d9;border-radius: 3px;background-color: #50a5e6;outline: 0;display: inline-block;';
 ////////////////////////////////////////////////////////////////////////////////////////
 //Open dashboard
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -60,7 +66,7 @@ whitePage();
 dashboard();
 Help("Please Fill Forms");
 
-var login = "CODE:" + onDebug();
+let login = "CODE:" + onDebug();
 login += "SET !ERRORIGNORE YES" + jsLF;
 login += "SET !TIMEOUT_STEP 1" + jsLF;
 login += "SET !DATASOURCE_DELIMITER :" + jsLF;
@@ -76,31 +82,25 @@ login += "TAG POS=1 TYPE=INPUT:TEXT FORM=ID:login-challenge-form ATTR=ID:challen
 login += "TAG POS=1 TYPE=INPUT:SUBMIT FORM=ID:login-challenge-form ATTR=ID:email_challenge_submit" + jsLF;
 login += "SET !EXTRACT {{!COL1}}" + jsLF;
 login += "ADD !EXTRACT {{!COL2}}" + jsLF;
-
-
 window.document.querySelectorAll('.run')[0].addEventListener("click", function () {
-    var retweet = window.document.querySelector("#retweet").checked;
-    var like = window.document.querySelector("#like").checked;
-    var randomize = window.document.querySelector("#randomize").checked;
-
-    var ask = prompt("Random Follow Between:", "1:3").split(':');
+    let retweet = window.document.querySelector("#retweet").checked;
+    let like = window.document.querySelector("#like").checked;
+    let randomize = window.document.querySelector("#randomize").checked;
+    let ask = prompt("Random Follow Between:", "1:3").split(':');
     randomize = getRandomInt(ask[0], ask[1]);
-
     try {
         window.document.querySelectorAll("div")[0].innerHTML = '<center><h2 style="direction:rtl">Loading...</h2></center>';
     } catch (err) {
         goBack("Err<br>" + err + "<br>Please open a new issue to make further updates.");
     }
-
-    for (var i = 1; i < getFileLines(imdata + "TwitterAccounts.csv"); i++) {
+    for (let i = 1; i < getFileLines(imdata + "TwitterAccounts.csv"); i++) {
         iimPlayCode("CLEAR");
         iimSet("loop", i);
         retcode = iimPlay(login);
         if (retcode < 0)
             break;
-
         for (j = 1; j < parseInt(randomize); j++) {
-            var macro = "CODE:" + onDebug();
+            let macro = "CODE:" + onDebug();
             macro += "SET !ERRORIGNORE YES" + jsLF;
             macro += "SET !DATASOURCE_DELIMITER :" + jsLF;
             macro += "SET !DATASOURCE TwitterAccounts.csv" + jsLF;
@@ -130,7 +130,6 @@ window.document.querySelectorAll('.run')[0].addEventListener("click", function (
         }
         iimDisplay("Current:" + i);
     }
-
 });
 //////////////////////////////////////DASHBOARD/////////////////////////////////////////
 function dashboard() {
@@ -145,34 +144,23 @@ function dashboard() {
         '</div>';
 }
 ///////////////////////////////////////////////////////////////////////////////////////
+/**
+ * 
+ * @param {string} min minimum random number
+ * @param {string} max maximum random number
+ * @returns random number
+ */
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min;
 }
-
-
 function whitePage() {
     iimPlayCode("TAB CLOSEALLOTHERS\nURL GOTO=https://www.twitter.com");
 }
-
-
-function talki() {
-    let greeting;
-    let time = new Date().getHours();
-    if (time < 10) {
-        greeting = "Good morning";
-    } else if (time < 20) {
-        greeting = "Good day";
-    } else {
-        greeting = "Good evening";
-    }
-}
-
 function Help(message) {
-    return window.document.querySelectorAll("body")[0].innerHTML += '<div class="iRightSideBar" style="font-family:Segoe UI,Tahoma,Arial,sans-serif;border-radius: 1em;text-align:right;font-size:16px;;direction: rtl; position: fixed; top: 0px; right: 0; margin: 1ex; padding: 1em; background: orange; width: 15%; hieght: 100px; z-index: 6666; opacity: 0.9;"> <p style="font-size:14px;">' + talki() + '</p> <ul style="margin:0ex;">' + message + '</ul></div>';
+    return window.document.querySelectorAll("body")[0].innerHTML += '<div class="iRightSideBar" style="font-family:Segoe UI,Tahoma,Arial,sans-serif;border-radius: 1em;text-align:right;font-size:16px;;direction: rtl; position: fixed; top: 0px; right: 0; margin: 1ex; padding: 1em; background: orange; width: 15%; hieght: 100px; z-index: 6666; opacity: 0.9;"> <p style="font-size:14px;"></p> <ul style="margin:0ex;">' + message + '</ul></div>';
 }
-
 function goBack(message) {
     whitePage();
     window.document.querySelectorAll("body")[0].innerHTML = '<div style="' + _cssdash + '"><center><h2 style="direction:rtl;font-size: 98%;">' + message + '</h2><button class="run" style="' + _cssbutton + '">إستمرار</button></center></div>';

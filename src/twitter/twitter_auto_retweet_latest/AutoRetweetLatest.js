@@ -23,7 +23,7 @@ function onDebug() {
 //A variable being used as memory to remember the next loop session by using new lines between every command.
 var jsLF = "\n";
 //Loop, error handling variables
-var i, retcode, errtext;
+let i, retcode, errtext;
 //Enumerating all windows of a given type and getting the most recent / any window of a given type.
 const windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
   .getService(Components.interfaces.nsIWindowMediator);

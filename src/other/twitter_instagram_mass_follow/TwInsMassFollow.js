@@ -20,15 +20,18 @@ function onDebug() {
 
     }
 }
+//Variable for iMacros built-in memory to remember the next loop session by using new lines between every command for iMacros.
 var jsLF = "\n";
-var i, retcode, errtext, button;
-var count = 0;
-var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+//Loop, error handling variables
+let i, retcode, errtext, count = 0;
+//Enumerating all windows of a given type and getting the most recent / any window of a given type.
+const windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
     .getService(Components.interfaces.nsIWindowMediator);
 var window = windowMediator.getMostRecentWindow("navigator:browser");
 ////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
 while (true) {
-    var macro = "CODE:" + onDebug();
+    let macro = "CODE:" + onDebug();
     macro += "SET !TIMEOUT_STEP 3" + jsLF;
     if (window.location.href.indexOf("mobile.twitter.com") >= 0) {
         macro += "TAG POS=3 TYPE=DIV ATTR=TXT:Follow" + jsLF;

@@ -21,13 +21,13 @@ function onDebug() {
     }
 }
 //Use true/false/1/0 only
-var temp_mail_mohmal = true; //use temp mail mohmal if false will use moakt.com
+let temp_mail_mohmal = true; //use temp mail mohmal if false will use moakt.com
 banned_emails = ["bareed.ws"]; //an array for banned emails to avoid
 ///////////////////////////////////////////////////////
 //A variable being used as memory to remember the next loop session by using new lines between every command for iMacros.
 var jsLF = "\n";
 //Loop, error handling variables as well as images and intervals and random values.
-var i, retcode, errtext, min, max, count = 0,
+let i, retcode, errtext, min, max, count = 0,
     good = 0,
     bad = 0,
     unconf = 0;
@@ -62,25 +62,31 @@ function PicUp() {
     if (retcode < 0)
         return false;
 }
-
 /**
- * @returns random number between min and max
+ * 
+ * @param {string} min minimum random number
+ * @param {string} max maximum random number
+ * @returns random number
  */
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min;
 }
-
 /**
- * @returns random password with num as limit for length.
+ * 
+ * @param {string} num password length
+ * @returns random password
  */
 function password(num) {
     return Math.random().toString().slice(2, num);
 }
-
 /**
- * @returns saves all accounts information.
+ * 
+ * @param {string} user username
+ * @param {string} pass password
+ * @param {string} email email address
+ * @param {string} status account information status
  */
 function saveAs(user, pass, email, status) {
     iimSet("usr", user);
@@ -94,8 +100,6 @@ function saveAs(user, pass, email, status) {
 let mynames = ["Awaad", "Abdallah", "Adam", "Ahmad", "Adham", "Acef", "Ashraf", "Harsh", "Aktham", "Akram", "Amjad", "Prince", "Anwar", "Aws", "Awab", "Aimen", "Anas", "Osama", "Islam", "Ikram", "Elhamy", "Eyad", "Eyas", "Faith", "Ehab", "Bashir", "Enmity", "Hassan", "Hussein", "Mansour", "Mu'taz Bellah", "Newborn", "Basil", "Basem", "Wow", "Badir", "Bahaa", "Batal", "Badr", "Badran", "Badr", "pond", "Bassam", "Bashar", "Bakr", "Bashir", "Belal", "Tamim", "Tim", "pious", "Turki", "Thamer", "Jaber", "Earnest", "Jasser", "Jassem", "Jabr", "Gabriel", "Jassar", "Jafar", "Jalal", "great", "Beauty", "Friday", "Jihad", "Hamza", "Hammad", "Hamoud", "Hudhayfah", "Husam", "Hosny", "Hussain", "Hikmet", "Haider", "Khalfan", "Khlefan", "Khalil", "Khuzam", "Dali", "Danny", "Drgham", "Darwish", "Duraid", "Raafat", "Raouf", "Pioneer", "Raef", "Rajeh", "Raji", "Rashed", "Satisfied", "willing", "Rakan", "Ramez", "Rami", "Rashad", "Rushd", "Rushdie", "Rashid", "Ramzi", "Riad", "Chubby", "Zaher", "Zahi", "Zayed", "Zubair", "Zuhair", "Zeyad", "Xian", "Zaid", "Zain", "I will see", "Salem", "Sameh", "Samer", "Sami", "Saher", "nebula", "Saad", "Saud", "Happy", "Sufian", "Sultan", "Salman", "Sulaiman", "Samih", "Samir", "Shady", "Shaker", "Shaheen", "Shaya", "Shaddad", "Sherif", "Shafiq", "Sabir", "Safwat", "Salah", "Dahi", "Dia", "Tareq", "Tayel", "Talal", "Talaat", "Taha", "Zafer", "Abed", "Adel", "Arif", "Amer", "obaida", "Othman", "Adnan", "Arafat", "Almighty", "Azzam", "Izzat", "Azmi", "Aziz", "Essam", "Alaa", "Top", "Emad", "Ammar", "Omar", "Amr", "Amir", "Awni", "Ayyash", "Oday", "Ghaly", "Ghanem", "a stranger", "Ghassan", "Ghoneim", "Ghaith", "Fouad", "Fadi", "Knight", "Farouk", "Faiz", "Fathi", "Pride", "Fida", "Firas", "Unique", "Fazza", "Fahd", "Fahmy", "Fawaz", "Fawzi", "Fayyad", "Faisal", "Qaboos", "Qusay", "Karem", "Kazem", "Canaan", "Loai", "Labib", "Laith", "safe", "Abida", "Adiba", "Afaf", "Afifa", "Ahlem", "Aïcha", "Aïda", "Alia", "Amana", "Amel", "Amina", "Amira", "Anissa", "Asmaa", "Assia", "Atika", "Aya", "Aziza", "Badra", "Basma", "Chadia", "Chafia", "Chafika", "Chahra", "Chahrazad", "Chakira", "Dalila", "Djamila", "Douha", "Dounia", "Emna", "Fadila", "Faiza", "Farida", "Faten", "Fatiha", "Fatima", "Fouzia", "Ghalia", "Ghania", "Habiba", "Hadia", "Hafida", "Hafsa", "Hakima", "Hauled", "Halima", "Hamida", "Hanane", "Hania", "Hanna", "Hayet", "Hawa", "Ibtissem", "Ikram", "Ilhem", "Imane", "Ines", "Karima", "Kawtar", "Kenza", "Khadidja", "Khalida", "Latifa", "Leila", "Mabrouka", "Maha", "Mahbouba", "Maissa", "Majda", "Malika", "Manel", "Meriem", "Moufida", "Mouna", "Mounira", "Nabila", "Nacira", "Nadia", "Nadjiba", "Nafissa", "Naïma", "Najet", "Nawel", "Naziha", "Nedjma", "Nour", "Rachida", "Rahma", "Rajah", "Rawda", "Safia", "Saïda", "Sakina", "Saliha", "Salima", "Saloua", "Samia", "Samira", "Sanaa", "Selma", "Sihème", "Soraya", "Souad", "Wafa", "Wahiba", "Warda", "Wasilla", "Wided", "Yamina", "Yasmine", "Yousra", "Zineb", "Zohra", "Adam", "Adel", "Adib", "Adil", "Ahmed", "Aissa", "Ali", "Amine", "Amir", "Anas", "Anise", "Anouar", "Ayoub", "Azziz", "Bachir", "Badr", "Baligh", "Billal", "Bouzid", "Chafik", "Chahid", "Chaker", "Chams", "Chawki", "Chokri", "Daoud", "Djamel", "Djillali", "Fadel", "Fahim", "Fares", "Farid", "Fathi", "Faudel", "Faouzi", "Fayçal", "Ferhat", "Fouad", "Gibril", "Ghani", "Habib", "Hafid", "Hakim", "Halim", "Hamid", "Hani", "Hichem", "Hilal", "Hosni", "Ismail", "Imed", "Jabar", "Kader", "Kamel", "Karim", "Khaled", "Khalil", "Larbi", "Lotfi", "Mabrouk", "Mahboub", "Mahfoud", "Mahmoud", "Malik", "Marwan", "Mehdi", "Mohamed", "Moktar", "Moncef", "Mourad", "Nabil", "Nacer", "Nadir", "Nadjib", "Nassim", "Nazim", "Nouh", "Omar", "Othmane", "Usama", "Rabah", "Mohamed", "Rachid", "Rafik", "Rahal", "Ramzi", "Raouf", "Rayan", "Réda", "Redouane", "Riad", "Rochdi", "Sabri", "Salah", "Salim", "Sami", "Sedik", "Sofiane", "Tahar", "Taimim", "Tarek", "Tayeb", "Tawfik", "Wallid", "Wassim", "Yacoub", "Yazid", "Youcef", "Younes", "Zahid", "Zaïm", "Zakaria", "Zaki", "Ziad", "Zoheir", "Khalifa", "Reda", "Mazen", "Salah", "Samy", "Rami", "Hossam", "Diab", "Kamel", "Hatem", "Hakem", "Basha", "Zedan", "Nader", "Mina", "Ashor", "Amr", "Abdallah", "Abdulhakem", "Abdulhamed", "Abida", "Adiba", "Afaf", "Afifa", "Ahlem", "Aïcha", "Aïda", "Alia", "Amana", "Amel", "Amina", "Amira", "Anissa", "Asma", "Assia", "Atika", "Aya", "Aziza", "Badra", "Basma", "Chadia", "Chafia", "Chafika", "Chahra", "Chahrazad", "Chakira", "Dalila", "Djamila", "Douha", "Dounia", "Emna", "Fadila", "Faiza", "Farida", "Faten", "Fatiha", "Fatima", "Fouzia", "Ghalia", "Ghania", "Habiba", "Hadia", "Hafida", "Hafsa", "Hakima", "Hauled", "Halima", "Hamida", "Hanane", "Hania", "Hanna", "Hayet", "Hawa", "Ibtissem", "Ikram", "Ilhem", "Imane", "Ines", "Karima", "Kawtar", "Kenza", "Khadidja", "Khalida", "Latifa", "Leila", "Mabrouka", "Maha", "Mahbouba", "Maissa", "Majda", "Malika", "Manel", "Meriem", "Moufida", "Mouna", "Mounira", "Nabila", "Nacira", "Nadia", "Nadjiba", "Nafissa", "Naïma", "Najet", "Nawel", "Naziha", "Nedjma", "Nour", "Rachida", "Rahma", "Rajah", "Rawda", "Safia", "Saïda", "Sakina", "Saliha", "Salima", "Saloua", "Samia", "Samira", "Sanaa", "Selma", "Sihème", "Soraya", "Souad", "Wafa", "Wahiba", "Warda", "Wasilla", "Wided", "Yamina", "Yasmine", "Yousra", "Zineb", "Zohra", "Adam", "Adel", "Adib", "Adil", "Ahmed", "Aissa", "Ali", "Amine", "Amir", "Anas", "Anise", "Anouar", "Ayoub", "Azziz", "Bachir", "Badr", "Baligh", "Billal", "Bouzid", "Chafik", "Chahid", "Chaker", "Chams", "Chawki", "Chokri", "Daoud", "Djamel", "Djillali", "Fadel", "Fahim", "Fares", "Farid", "Fathi", "Faudel", "Faouzi", "Fayçal", "Ferhat", "Fouad", "Gibril", "Ghani", "Habib", "Hafid", "Hakim", "Halim", "Hamid", "Hani", "Hichem", "Hilal", "Hosni", "Ismail", "Imed", "Jabar", "Kaddour", "Kader", "Kamel", "Karim", "Khaled", "Khalil", "Larbi", "Lotfi", "Mabrouk", "Mahboub", "Mahfoud", "Mahmoud", "Malik", "Marwan", "Mehdi", "Mohamed", "Moktar", "Moncef", "Mourad", "Nabil", "Nacer", "Nadir", "Nadjib", "Nassim", "Nazim", "Nouh", "Omar", "Othmane", "Usama", "Rabah", "Rachid", "Rafik", "Rahal", "Ramzi", "Raouf", "Rayan", "Réda", "Redouane", "Riad", "Rochdi", "Sabri", "Salah", "Salim", "Sami", "Sedik", "Sofiane", "Tahar", "Taimim", "Tarek", "Tayeb", "Tawfik", "Wallid", "Wassim", "Yacoub", "Yazid", "Youcef", "Younes", "Zahid", "Zaïm", "Zakaria", "Zaki", "Ziad", "Zoheir", "AbdulRahman", "Zohdy", "Gamal", "Mobarak", "Samy", "Zain", "Malek", "Saeed", "Mohaab", "Mido"];
 //Default language
 let language = "en";
-
-
 //Sign up steps for the modern interface 2018
 let ainput = "CODE:" + onDebug();
 ainput += "SET !ERRORIGNORE YES" + jsLF; //ignore errors
@@ -106,8 +110,6 @@ ainput += "WAIT SECONDS=1" + jsLF; //1 Second later
 ainput += "EVENT TYPE=CLICK SELECTOR=\"HTML>BODY>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV\" BUTTON=0" + jsLF; //Simulate click
 ainput += "WAIT SECONDS=1" + jsLF; //1 Second  Later
 ainput += "EVENT TYPE=CLICK SELECTOR=\"HTML>BODY>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(5)>DIV\" BUTTON=0" + jsLF; //Simulate click
-
-
 //Steps for password and confirmation
 let binput = "CODE:" + onDebug();
 binput += "SET !ERRORIGNORE YES" + jsLF; //Ignore errors
@@ -117,50 +119,51 @@ binput += "WAIT SECONDS=1" + jsLF; //1 Second  Later
 binput += "EVENT TYPE=CLICK SELECTOR=\"HTML>BODY>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV:nth-of-type(2)>DIV:nth-of-type(2)>DIV>DIV>DIV:nth-of-type(2)>DIV>DIV>DIV>DIV>DIV:nth-of-type(3)>DIV>DIV\" BUTTON=0" + jsLF;
 binput += "WAIT SECONDS=1" + jsLF; //1 Second  Later
 binput += "TAG POS=1 TYPE=INPUT:TEXT FORM=ACTION:/signup/screen_name ATTR=ID:custom_name EXTRACT=TXT" + jsLF; //Extract username if possible
-
 let tempmail = "CODE:" + onDebug(),
     confirm = "CODE:" + onDebug();
 if (temp_mail_mohmal) {
-    tempmail += "SET !ERRORIGNORE YES" + jsLF; //Ignore errors
-    tempmail += "URL GOTO=https://www.mohmal.com/ar/view" + jsLF; //Go to mohmal
-    tempmail += "TAG POS=1 TYPE=A ATTR=ID:rand&&HREF:/ar/create/random&&CLASS:btn<SP>btn-primary&&REL:nofollow" + jsLF; //hit email
-    tempmail += "TAG POS=1 TYPE=DIV ATTR=DATA-CLIPBOARD-TARGET:#email<SP>.email&&CLASS:email&&DATA-EMAIL:* EXTRACT=TXT" + jsLF; //extract email
-    confirm += "SET !ERRORIGNORE YES" + jsLF; //Ignore errors
-    confirm += "URL GOTO=https://www.mohmal.com/ar/view" + jsLF; //Go to inbox
+    //Temp email address generator
+    tempmail += "SET !ERRORIGNORE YES" + jsLF; //Error ignore 
+    tempmail += "URL GOTO=https://www.mohmal.com/ar/view" + jsLF; //Url go to for mohmal
+    tempmail += "TAG POS=1 TYPE=A ATTR=ID:rand&&HREF:/ar/create/random&&CLASS:btn<SP>btn-primary&&REL:nofollow" + jsLF; //Create random email address
+    tempmail += "TAG POS=1 TYPE=DIV ATTR=DATA-CLIPBOARD-TARGET:#email<SP>.email&&CLASS:email&&DATA-EMAIL:* EXTRACT=TXT" + jsLF; //Extract account email address
+   //Confirmation Section
+    confirm += "SET !ERRORIGNORE YES" + jsLF;//Error ignore
+    confirm += "URL GOTO=https://www.mohmal.com/ar/view" + jsLF;//Open mohmal website
     confirm += "SET !ERRORIGNORE NO" + jsLF; //Don't ignore errors
-    confirm += "TAG POS=1 TYPE=A ATTR=HREF:#" + jsLF; //Hit link
-    confirm += "FRAME F=1" + jsLF; //use frame 1
-    confirm += "TAG POS=1 TYPE=A ATTR=TARGET:_blank&&HREF:https://twitter.com/i/*" + jsLF; //Hit activation link
+    confirm += "TAG POS=1 TYPE=A ATTR=HREF:#" + jsLF;
+    confirm += "FRAME F=1" + jsLF; //Switch to frame 1
+    confirm += "TAG POS=1 TYPE=A ATTR=TARGET:_blank&&HREF:https://twitter.com/i/*" + jsLF; //Open twitter Email
     confirm += "SET !ERRORIGNORE YES" + jsLF; //Ignore errors
-    confirm += "SET !TIMEOUT_PAGE 4" + jsLF; //Timeout 4 seconds for url loading then skip
-    confirm += "TAG POS=1 TYPE=A ATTR=HREF:https://twitter.com/i/redirect?url=*" + jsLF;
-    confirm += "TAB CLOSEALLOTHERS" + jsLF; //Close all other tabs then switch
+    confirm += "SET !TIMEOUT_PAGE 4" + jsLF; //Page timeout to 4 seconds
+    confirm += "TAG POS=1 TYPE=A ATTR=HREF:https://twitter.com/i/redirect?url=*" + jsLF; //Submit Twitter Confirmation Button
+    confirm += "TAB CLOSEALLOTHERS" + jsLF; //Close all others tabs
 } else {
-    tempmail += "SET !ERRORIGNORE YES" + jsLF; //Ignore errors
-    tempmail += "URL GOTO=https://www.moakt.com/ar/mail" + jsLF; //Go to that url
-    tempmail += "TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:/ar/mail ATTR=NAME:random" + jsLF; //Random
+    //Temp email address generator
+    tempmail += "SET !ERRORIGNORE YES" + jsLF; //Error ignore for macros
+    tempmail += "URL GOTO=https://www.moakt.com/ar/mail" + jsLF; //Url go to moakt 
+    tempmail += "TAG POS=1 TYPE=INPUT:SUBMIT FORM=ACTION:/ar/mail ATTR=NAME:random" + jsLF; //Submit random email
     tempmail += "TAG POS=1 TYPE=DIV ATTR=ID:email-address EXTRACT=TXT" + jsLF; //Extract email address
-    confirm += "SET !ERRORIGNORE YES" + jsLF; //Ignroe errors
-    confirm += "URL GOTO=https://www.moakt.com/ar/mail" + jsLF; //Moakt Email Address
-    confirm += "WAIT SECONDS=10" + jsLF; // Wait 10 seconds
-    confirm += "REFRESH" + jsLF; //Then fresh
-    confirm += "SET !ERRORIGNORE NO" + jsLF; //Don't ignore errors in the following steps
-    confirm += "TAG POS=4 TYPE=TD ATTR=*" + jsLF; //Next
-    confirm += "TAG POS=1 TYPE=A ATTR=HREF:/ar/msg/*" + jsLF; //Hit Message
-    confirm += "FRAME F=1" + jsLF; //Open Frame 1
-    confirm += "SET !ERRORIGNORE YES" + jsLF; //Ignore errors
-    confirm += "SET !TIMEOUT_PAGE 4" + jsLF; //Wait 4 seconds for page loading only
-    confirm += "TAG POS=1 TYPE=A ATTR=HREF:https://twitter.com/i/redirect?url=*" + jsLF; //Go to the activation link
+    confirm += "SET !ERRORIGNORE YES" + jsLF; //Ignore code rrors
+   //Confirmation Section
+    confirm += "URL GOTO=https://www.moakt.com/ar/mail" + jsLF; //Go to moakt website again
+    confirm += "WAIT SECONDS=10" + jsLF; //Wait 10 seconds
+    confirm += "REFRESH" + jsLF; //Refresh webpage
+    confirm += "SET !ERRORIGNORE NO" + jsLF; //Don't ignore errors
+    confirm += "TAG POS=4 TYPE=TD ATTR=*" + jsLF; //Select email
+    confirm += "TAG POS=1 TYPE=A ATTR=HREF:/ar/msg/*" + jsLF; //Open it
+    confirm += "FRAME F=1" + jsLF;//Switch to other frame
+    confirm += "SET !ERRORIGNORE YES" + jsLF; //Ignore any other errors
+    confirm += "SET !TIMEOUT_PAGE 4" + jsLF; //Timeout for webpage
+    confirm += "TAG POS=1 TYPE=A ATTR=HREF:https://twitter.com/i/redirect?url=*" + jsLF; //Confirm twitter account email address
     confirm += "TAB CLOSEALLOTHERS" + jsLF; //Close all other tabs
 }
-
 //Get confimation Links
 let repmail = "CODE:" + onDebug();
 repmail += "SET !ERRORIGNORE YES" + jsLF;
 repmail += "TAG POS=1 TYPE=A ATTR=TXT:mode_edit<SP>*" + jsLF;
 repmail += "WAIT SECONDS=5" + jsLF;
 repmail += "TAG POS=1 TYPE=DIV ATTR=ID:email-address EXTRACT=TXT" + jsLF;
-
 //Upadte user profile and upload image
 let profile = "CODE:" + onDebug();
 profile += "SET !ERRORIGNORE YES" + jsLF;
@@ -199,7 +202,6 @@ try {
             iimSet("fullname", name);
             iimSet("email", email);
             iimPlay(ainput);
-
             if (window.location.href === "https://mobile.twitter.com/i/flow/signup?type=email") {
                 iimSet("password", pass);
                 iimPlay(binput);

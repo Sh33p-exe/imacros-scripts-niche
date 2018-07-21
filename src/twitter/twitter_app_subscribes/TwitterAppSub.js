@@ -20,24 +20,32 @@ function onDebug() {
 
     }
 }
- var jsLF = "\n";
-  var iMacros = window.QueryInterface(imns.Ci.nsIInterfaceRequestor)
+//Variable for iMacros built-in memory to remember the next loop session by using new lines between every command for iMacros.
+var jsLF = "\n";
+//Loop, error handling variables
+let i, retcode, errtext, count = 0;
+//Enumerating all windows of a given type and getting the most recent / any window of a given type.
+const windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+    .getService(Components.interfaces.nsIWindowMediator);
+var window = windowMediator.getMostRecentWindow("navigator:browser");
+////////////////////////////////////////////////////////////////////////////////////////
+  let iMacros = window.QueryInterface(imns.Ci.nsIInterfaceRequestor)
   .getInterface(imns.Ci.nsIWebNavigation)
   .QueryInterface(imns.Ci.nsIDocShellTreeItem).rootTreeItem
   .QueryInterface(imns.Ci.nsIInterfaceRequestor)
   .getInterface(imns.Ci.nsIDOMWindow).iMacros;
-  var filename = iMacros._currentMacro.name;
-  var datapath = (iMacros._currentMacro.path).replace(filename, '').replace(/\\Macros\\/g, '\\Datasources\\');
-  var txtfile = "TwitterAccounts.txt";
+  let filename = iMacros._currentMacro.name;
+  let datapath = (iMacros._currentMacro.path).replace(filename, '').replace(/\\Macros\\/g, '\\Datasources\\');
+  let txtfile = "TwitterAccounts.txt";
 
  function AppsaveAs(user) {
      iimSet("usr", user);
      iimPlayCode("SET !EXTRACT {{usr}}\nSAVEAS TYPE=EXTRACT FOLDER=* FILE=twitterappsubs.txt");
  }
 
- var lines = +prompt('How many accounts do you have?');
- for (var index = 1; index < lines; index++) {
-     var Subs = "CODE:" + onDebug();
+ let lines = +prompt('How many accounts do you have?');
+ for (let index = 1; index < lines; index++) {
+     let Subs = "CODE:" + onDebug();
      Subs += "SET !ERRORIGNORE YES" + jsLF;
      Subs += "CLEAR" + jsLF;
      Subs += "SET !TIMEOUT_STEP 3" + jsLF;
@@ -58,7 +66,7 @@ function onDebug() {
      Subs += "TAG POS=1 TYPE=INPUT:SUBMIT FORM=ID:oauth_form ATTR=ID:allow" + jsLF;
      Subs += "SET !EXTRACT {{!COL1}}" + jsLF;
      iimPlay(Subs);
-     var user = iimGetLastExtract();
+     let user = iimGetLastExtract();
      AppsaveAs(user);
 
      iimDisplay("Current: " + index);
