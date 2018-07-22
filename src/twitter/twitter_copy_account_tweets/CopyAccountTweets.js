@@ -9,17 +9,16 @@ const USER_AGENT_STRING = ""; //Please not that change useragent may change the 
  */
 function onDebug() {
     if (EASY_DEBUG_MODE) {
-        window.console.log(`%ciMacros DEBUG MODE IS ACTIVATED`, 'background: red; color: white');
-        let first_time = 0;
-        if (!first_time) {
-            iimPlayCode("SET !USERAGENT " + USER_AGENT_STRING + "\n");
-            first_time = 1;
-        }
-        activate_debugg = "SET !SINGLESTEP YES\nSET !EXTRACT_TEST_POPUP YES";
-        return activate_debugg;
-
-    }
-}
+      window.console.log(`%ciMacros DEBUG MODE IS ACTIVATED`, 'background: red; color: white');
+      let first_time = 0;
+      if (!first_time) {
+        iimPlayCode("SET !USERAGENT " + USER_AGENT_STRING + "\n");
+        first_time = 1;
+      }
+      return "SET !SINGLESTEP YES\nSET !EXTRACT_TEST_POPUP YES\n";
+    } else
+      return '';
+  }
 //Variable for iMacros built-in memory to remember the next loop session by using new lines between every command for iMacros.
 var jsLF = "\n";
 //Loop, error handling variables

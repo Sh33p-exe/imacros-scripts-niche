@@ -24,9 +24,9 @@ function onDebug() {
             iimPlayCode("SET !USERAGENT " + USER_AGENT_STRING + "\n");
             first_time = 1;
         }
-        allow_debug = "SET !SINGLESTEP YES\nSET !EXTRACT_TEST_POPUP YES\n";
-        return allow_debug;
-    }
+        return "SET !SINGLESTEP YES\nSET !EXTRACT_TEST_POPUP YES\n";
+    } else
+        return '';
 }
 var purl = prompt('Please Enter Post URL:'); //Prompt to user to enter url
 var murl = purl.match(/\/([0-9]+)/g).toString().replace(/\//g, ''); //Get URL ID

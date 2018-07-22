@@ -38,17 +38,17 @@ function getFileLines(file_path) {
  * Also it adds a support for iMacros Developer Tools, which makes the script debug easy with a little knowledge in HTML Basics and Developer Tools.
  */
 function onDebug() {
-    if (EASY_DEBUG_MODE) {
-        window.console.log(`%ciMacros DEBUG MODE IS ACTIVATED`, 'background: red; color: white');
-        let first_time = 0;
-        if (!first_time) {
-            iimPlayCode("SET !USERAGENT " + USER_AGENT_STRING + "\n");
-            first_time = 1;
-        }
-        allow_debug = "SET !SINGLESTEP YES\nSET !EXTRACT_TEST_POPUP YES\n";
-        return allow_debug;
-    }
-}
+	if (EASY_DEBUG_MODE) {
+	  window.console.log(`%ciMacros DEBUG MODE IS ACTIVATED`, 'background: red; color: white');
+	  let first_time = 0;
+	  if (!first_time) {
+		iimPlayCode("SET !USERAGENT " + USER_AGENT_STRING + "\n");
+		first_time = 1;
+	  }
+	  return "SET !SINGLESTEP YES\nSET !EXTRACT_TEST_POPUP YES\n";
+	} else
+	  return '';
+  }
 
 var jsLF = "\n";
 

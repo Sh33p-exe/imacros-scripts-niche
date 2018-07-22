@@ -18,16 +18,16 @@ iimPlayCode("URL GOTO=https://m.facebook.com/groups/?category=groups&ref=group_b
  */
 function onDebug() {
     if (EASY_DEBUG_MODE) {
-        window.console.log(`%ciMacros DEBUG MODE IS ACTIVATED`, 'background: red; color: white');
-        let first_time = 0;
-        if (!first_time) {
-            iimPlayCode("SET !USERAGENT " + USER_AGENT_STRING + "\n");
-            first_time = 1;
-        }
-        allow_debug = "SET !SINGLESTEP YES\nSET !EXTRACT_TEST_POPUP YES\n";
-        return allow_debug;
-    }
-}
+      window.console.log(`%ciMacros DEBUG MODE IS ACTIVATED`, 'background: red; color: white');
+      let first_time = 0;
+      if (!first_time) {
+        iimPlayCode("SET !USERAGENT " + USER_AGENT_STRING + "\n");
+        first_time = 1;
+      }
+      return "SET !SINGLESTEP YES\nSET !EXTRACT_TEST_POPUP YES\n";
+    } else
+      return '';
+  }
 // var groups = window.document.querySelectorAll('.bn');
 for (var i = 1;; i++) {
     try {
