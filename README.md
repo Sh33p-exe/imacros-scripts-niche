@@ -85,7 +85,7 @@ Another Example with DOM to get element ``textContent``
 window.document.querySelector('body').textContent;
 ```
 
-Ater pressing **play** an error messages will appear means you need to completely forgot ``window content`` methods.
+Atfer pressing **play** an error messages will appear means you need to completely forgot ``window content`` methods.
 
 Alternative using to click or fill forms using iMacros Basic Language
 
