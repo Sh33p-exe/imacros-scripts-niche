@@ -14,10 +14,6 @@ Copy all account tweets by username
 - datasources file names is case sensitve and should not be empty.
 - macro may not work without datasources needed.
 
-## Downloads
-- file.csv/txt/other (You shouldn't create this file)
-- file1.csv/txt/other (You shouldn't create this file)
-
 ### Install instructions available at the main README.md file for this repository.
 
 ### Path
