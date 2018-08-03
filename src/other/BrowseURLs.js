@@ -13,11 +13,11 @@ var datapath = (iMacros._currentMacro.path).replace(filename, '').replace(/\\Mac
 
 var count = 0;
 var txtfile = "browseurls.txt";
-var urls = lineCount(datapath + txtfile);
+var urls = getFileLines(datapath + txtfile);
 ///////////////////////////////////////////////////
 var min = +prompt("Interval in seconds:");
 if (min) {
-    for (i = 1; i < lineCount(datapath + txtfile); i++) {
+    for (i = 1; i < getFileLines(datapath + txtfile); i++) {
         var forums = "CODE:";
         forums += "SET !ERRORIGNORE YES" + jsLF;
         forums += "SET !TIMEOUT_PAGE 39" + jsLF;

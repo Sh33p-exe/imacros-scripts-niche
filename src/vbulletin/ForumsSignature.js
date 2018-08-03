@@ -15,12 +15,12 @@ var windowMediator = Components.classes["@mozilla.org/appshell/window-mediator;1
 var window = windowMediator.getMostRecentWindow("navigator:browser");
 var txtfile = "signurls.txt";
 var xfile = "signurls.txt";
-var urls = lineCount(datapath + txtfile);
+var urls = getFileLines(datapath + txtfile);
 var _cssdash = 'font-family: Tahoma,sans-serif;line-height: 18px;font-size: 16px;color: #8899a6;width: 600px;margin: 5em auto;padding: 50px;background-color: #fff;border-radius: 1em;';
 var _cssinput = 'display: inline-block;padding: 4px;margin: 0;outline: 0;background-color: #fff;border: 1px solid #e1e8ed;border-radius: 3px;';
 var _cssbutton = 'font-size: 14px;font-weight: bold;color: white;padding: 9px 18px;border: 1px solid #3b94d9;border-radius: 3px;background-color: #50a5e6;outline: 0;display: inline-block;';
 
-function lineCount(file_path) {
+function getFileLines(file_path) {
     const CRLF = "\r\n";
     const LF = "\n";
     var lines = [];

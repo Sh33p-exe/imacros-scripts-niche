@@ -20,7 +20,7 @@ var waitman = prompt('Interval:');
 var xsource = "stumbaccounts.txt";
 var xfeed = "feedbackurls.txt";
 
-function lineCount(file_path) {
+function getFileLines(file_path) {
     const CRLF = "\r\n";
     const LF = "\n";
     var lines = [];
@@ -35,8 +35,8 @@ function lineCount(file_path) {
 
 while (true) {
     var findex = 1;
-    if (lineCount(datapath + xsource) === lineCount(datapath + xpath)) {
-        for (var index = 1; index <= lineCount(datapath + xsource); index++) {
+    if (getFileLines(datapath + xsource) === getFileLines(datapath + xpath)) {
+        for (var index = 1; index <= getFileLines(datapath + xsource); index++) {
             var rssmacro = "CODE:";
             rssmacro += "TAB CLOSEALLOTHERS" + jsLF;
             rssmacro += "TAB T=1" + jsLF;

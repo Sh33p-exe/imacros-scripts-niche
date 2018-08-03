@@ -14,12 +14,12 @@ var datapath = (iMacros._currentMacro.path).replace(filename, '').replace(/\\Mac
 var count = 0;
 var txtfile = "topicurls.txt";
 var xfile = "repliedurls.txt";
-var urls = lineCount(datapath + txtfile);
+var urls = getFileLines(datapath + txtfile);
 var _cssdash = 'font-family: Tahoma,sans-serif;line-height: 18px;font-size: 16px;color: #8899a6;width: 600px;margin: 5em auto;padding: 50px;background-color: #fff;border-radius: 1em;';
 var _cssinput = 'display: inline-block;padding: 4px;margin: 0;outline: 0;background-color: #fff;border: 1px solid #e1e8ed;border-radius: 3px;';
 var _cssbutton = 'font-size: 14px;font-weight: bold;color: white;padding: 9px 18px;border: 1px solid #3b94d9;border-radius: 3px;background-color: #50a5e6;outline: 0;display: inline-block;';
 
-function lineCount(file_path) {
+function getFileLines(file_path) {
     const CRLF = "\r\n";
     const LF = "\n";
     var lines = [];
@@ -67,7 +67,7 @@ window.document.querySelectorAll('.run')[0].addEventListener("click", function (
 
 function Run(myreply, min, user, pass) {
     window.document.querySelectorAll("div")[0].innerHTML = '<center><h2 style="direction:rtl">Loading...</h2></center>';
-    for (i = 1; i <= lineCount(datapath + txtfile); i++) {
+    for (i = 1; i <= getFileLines(datapath + txtfile); i++) {
         try {
             var forums = "CODE:";
             forums += "SET !ERRORIGNORE YES" + jsLF;
