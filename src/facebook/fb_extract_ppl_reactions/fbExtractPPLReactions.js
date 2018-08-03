@@ -39,22 +39,6 @@ function onDebug() {
 
     }
 }
-/**
- * @description This function will activate built-in iMacros Debug for every single step with more advanced algorithm to track changes
- * Also it adds a support for iMacros Developer Tools, which makes the script debug easy with a little knowledge in HTML Basics and Developer Tools.
- */
-function onDebug() {
-    if (EASY_DEBUG_MODE) {
-        window.console.log(`%ciMacros DEBUG MODE IS ACTIVATED`, 'background: red; color: white');
-        let first_time = 0;
-        if (!first_time) {
-            iimPlayCode("SET !USERAGENT " + USER_AGENT_STRING + "\n");
-            first_time = 1;
-        }
-        return "SET !SINGLESTEP YES\nSET !EXTRACT_TEST_POPUP YES\n";
-    } else
-        return '';
-}
 var purl = prompt('Please Enter Post URL:'); //Prompt to user to enter url
 var murl = purl.match(/\/([0-9]+)/g).toString().replace(/\//g, ''); //Get URL ID
 //Check if ID is exist and doesn't equal null
@@ -65,6 +49,7 @@ if (murl !== null) {
     while (window.document.getElementsByClassName('h bu').length) {
         //Loop ten times a maximum for everypage
         Loop: for (var i = 1; i <= 10; i++) {
+            iimDisplay('Current: ' + i);
             var macro = "CODE:" + onDebug();
             macro += "SET !TIMEOUT_STEP 1" + jsLF; //Wait 1 Second if the element isn't exist
             macro += "TAG POS={{loop}} TYPE=H3 ATTR=CLASS:bl EXTRACT=TXT" + jsLF; //Extract Name
