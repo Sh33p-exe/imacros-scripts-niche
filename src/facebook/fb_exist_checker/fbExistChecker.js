@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 // DEBUG: For Developers only, Also to activate all other variables you must activate easy debug mode first to true OR 1.
 const EASY_DEBUG_MODE = true; //To active built-in Debug mode for testing in iMacros Add-on and support Firefox Developer Tools for source-code changes.
-const USER_AGENT_STRING = ""; //Please not that change useragent may change the whole website interface.
+const USER_AGENT_STRING = ""; //please note that change useragent may change the whole website interface.
 ////////////////////////////////////////////////////////////////////////////////////////
 //Variable for iMacros built-in memory to remember the next loop session by using new lines between every command for iMacros.
 let jsLF = "\n";

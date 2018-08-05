@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 // DEBUG: For Developers only
 const EASY_DEBUG_MODE = false; //To activate built-in Debug mode for testing in iMacros Add-on and support Firefox Developer Tools for source-code changes.
-const USER_AGENT_STRING = ""; //Please not that change useragent may change the whole website interface
+const USER_AGENT_STRING = ""; //please note that change useragent may change the whole website interface
 ////////////////////////////////////////////////////////////////////////////////////////
 /**
  * @description This function will activate built-in iMacros Debug for every single step with more advanced algorithm to track changes

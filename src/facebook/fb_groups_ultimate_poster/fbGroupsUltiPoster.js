@@ -1,7 +1,7 @@
 ﻿////////////////////////////////////////////////////////////////////////////////////////
 // DEBUG: For Developers only
 const EASY_DEBUG_MODE = false; //To activate built-in Debug mode for testing in iMacros Add-on and support Firefox Developer Tools for source-code changes.
-const USER_AGENT_STRING = ""; //Please not that change useragent may change the whole website interface
+const USER_AGENT_STRING = ""; //please note that change useragent may change the whole website interface
 ////////////////////////////////////////////////////////////////////////////////////////
 //A variable being used as memory to remmeber the next loop session by using new lines between every command.
 var jsLF = "\n";
