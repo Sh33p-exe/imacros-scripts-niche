@@ -149,7 +149,7 @@ if (window.document.body.innerText.indexOf('To use WhatsApp on your computer') =
                 window.console.log("***Account: " + index);
                 //Send to number Section
                 if (index === 0) {
-                    iimPlayCode("WAIT SECONDS=5");
+                    iimPlayCode("WAIT SECONDS=10");
                     window.document.querySelector("header").innerHTML += '<div id="numplace"></div>';
                 }
                 //Go to number
@@ -159,14 +159,15 @@ if (window.document.body.innerText.indexOf('To use WhatsApp on your computer') =
                     iimPlayCode("WAIT SECONDS=5");
                 else
                     iimPlayCode("WAIT SECONDS=1");
-                try {
-                    let current_number = parseInt(window.document.querySelector('._2zCDG > span:nth-child(1)').title.replace(/\s/g, ''));
-                } catch (error) {
-                    iimDisplay(current_number + ' not found.');
-                }
-                iimPlayCode("WAIT SECONDS=5");
-
-                if (index > 0) {
+                window.document.querySelector('._2zCDG > span:nth-child(1)').click();
+				iimPlayCode("WAIT SECONDS=2");
+				let title = window.document.querySelectorAll('._3WCza > span:nth-child(1)')[3].innerText;
+				let current_number = parseInt(window.document.querySelectorAll('._3WCza > span:nth-child(1)')[3].innerText.replace(/\s/g, ''));
+        		//let current_number = parseInt(window.document.querySelector('._2zCDG > span:nth-child(1)').title.replace(/\s/g, ''));
+                iimDisplay(current_number + ' is Current Number.'+' Title is '+title);
+                iimPlayCode("WAIT SECONDS=6");
+				iimDisplay(current_number + ' is Current Number text2.');
+				if (index > 0) {
                     retcode = iimPlayCode("WAIT SECONDS=" + interval);
                     if (retcode < 0)
                         break;
@@ -174,11 +175,15 @@ if (window.document.body.innerText.indexOf('To use WhatsApp on your computer') =
                 ////////////////////////////////////////
                 //Send Message
                 if (Number(list[index]) === Number(current_number)) {
+                iimDisplay(current_number + ' is Current Number text4.');
+				iimPlayCode("WAIT SECONDS=2");
                     let macro = "CODE:";
                     macro += "SET !TIMEOUT_STEP 1" + jsLF;
-                    macro += "SET !CLIPBOARD {{msg}}<br>{{!NOW:mm/dd<SP>hh:nn:ss}}" + "<br>" + Math.random().toString(36).substring(7) + jsLF;
+                    macro += "SET !CLIPBOARD {{msg}}" + jsLF;
+					//<br>{{!NOW:mm/dd<SP>hh:nn:ss}}" + "<br>" + Math.random().toString(36).substring(7)
                     macro += "EVENT TYPE=KEYPRESS SELECTOR=\"#main>FOOTER>DIV>DIV>DIV>DIV:nth-of-type(2)\" CHAR=V MODIFIERS=CTRL" + jsLF;
-                    macro += "EVENT TYPE=CLICK SELECTOR=\"#main>FOOTER>DIV>BUTTON\" BUTTON=0" + jsLF;
+                    macro += "EVENT TYPE=KEYDOWN SELECTOR=\"#main>FOOTER>DIV>DIV>DIV>DIV:nth-of-type(2)\" KEY=13" + jsLF;
+                    //macro += "EVENT TYPE=CLICK SELECTOR=\"#main>FOOTER>DIV>BUTTON\" BUTTON=0" + jsLF;
                     macro += "SET !ERRORIGNORE YES" + jsLF;
                     macro += "SET !REPLAYSPEED SLOW" + jsLF;
                     for (i = 0; i < links.length; i++) {
@@ -228,7 +233,7 @@ if (window.document.body.innerText.indexOf('To use WhatsApp on your computer') =
                     counter++;
                 }
 
-                // iimDisplay("error!\n" + current_number + " != " + list[index]);
+                iimDisplay("error!\n" + current_number + " != " + list[index]);
                 if (counter >= gmessages) {
                     counter = 0;
                     gmessages = getRandomInt(mgmin, mgmax);
