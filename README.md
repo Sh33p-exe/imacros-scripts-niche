@@ -3,7 +3,7 @@
 An open source macros scripts for most popular niches :)
 
 Note: this repo discontinued due firefox ESR 52 is no longer supported by firefox.
-at this moment if there any alternatives. I will create another repo for this scripts.
+at this moment if there any alternatives. I will create another repo for these scripts.
 
 ## Requirements
 
